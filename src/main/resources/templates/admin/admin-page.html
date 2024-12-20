@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin - Dashboard</title>
+    <link rel="stylesheet" href="/css/admin-page.css">
+</head>
+<body>
+<div class="admin-container">
+    <h1 style="text-align: center">Admin - Dashboard</h1>
+    <form action="/admin/manage/updateLogo" method="post">
+        <div class="form-group">
+            <label for="logoPath">Logo Image Path:</label>
+            <input type="text" id="logoPath" name="logoPath" th:value="${logoPath}" required>
+        </div>
+        <button type="submit" class="btn-change-logo">Change Logo</button>
+    </form>
+    <br>
+    <form action="/admin/manage/uploadLogo" method="post" enctype="multipart/form-data">
+        <div class="form-group">
+            <label for="logoFile">Upload New Logo:</label>
+            <input type="file" id="logoFile" name="logoFile" accept="image/*" required>
+        </div>
+        <button type="submit" class="btn-upload-logo">Upload Logo</button>
+    </form>
+    <br>
+    <h2>Owner Details: </h2>
+    <form action="/admin/manage/updateOwnerDetails" method="post">
+        <div class="form-group">
+            <label for="ownerName">Owner Name:</label>
+            <input type="text" id="ownerName" name="ownerName" th:value="${ownerName}" required>
+            <label for="ownerContactNo">Owner ContactNo.:</label>
+            <input type="text" id="ownerContactNo" name="ownerContactNo" th:value="${ownerContactNo}" required>
+            <label for="ownerEmail">Owner Email:</label>
+            <input type="text" id="ownerEmail" name="ownerEmail" th:value="${ownerEmail}" required>
+        </div>
+        <button type="submit" class="btn-change-ownerDetails">Change Owner Details</button>
+    </form>
+</div>
+</body>
+</html>

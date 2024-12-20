@@ -1,0 +1,45 @@
+/* Admin Dashboard Container Styling */
+.admin-container {
+    max-width: 600px; /* Restrict container width for better layout */
+    margin: 0 auto; /* Center the container horizontally */
+    padding: 20px; /* Padding inside container */
+    background-color: #f9f9f9; /* Light background color */
+    border-radius: 8px; /* Rounded corners for the container */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Box shadow for subtle depth effect */
+}
+
+/* Form Group Styling */
+.form-group {
+    margin-bottom: 15px; /* Space between form elements */
+}
+
+label {
+    font-weight: bold; /* Label font weight for better visibility */
+    display: block; /* Display label as block */
+    margin-bottom: 5px; /* Space below the label */
+}
+
+/* Input Field Styling */
+input[type="text"] {
+    width: 100%; /* Full width for input */
+    padding: 8px; /* Padding inside the input field */
+    border: 1px solid #ccc; /* Border color for input field */
+    border-radius: 4px; /* Rounded corners for the input */
+    font-size: 16px; /* Font size for input */
+}
+
+/* Submit Button Styling */
+.btn-change-logo {
+    background-color: #007bff; /* Blue button background */
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    cursor: pointer;
+    border-radius: 5px;
+    font-size: 16px;
+    transition: background-color 0.3s ease-in-out;
+}
+
+.btn-change-logo:hover {
+    background-color: #0056b3; /* Darker blue on hover */
+}

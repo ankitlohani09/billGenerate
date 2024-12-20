@@ -1,5 +1,6 @@
 package com.example.service.impl;
 
+import com.example.controllers.AdminController;
 import com.example.entity.Quotation;
 import com.example.repository.QuotationRepository;
 import com.example.service.GeneratePdfService;
@@ -46,7 +47,7 @@ public class GeneratePdfServiceImpl implements GeneratePdfService {
         Font smallerFont = new Font(normalFont.getBaseFont(), 8, Font.BOLD);
 
         // Add Logo
-        addImageFromClasspath(document, "static/image/LogoRadhikaHotelNoText.png", 120, 120, Element.ALIGN_RIGHT);
+        addImageFromClasspath(document, AdminController.LOGO_PATH, 120, 120, Element.ALIGN_RIGHT);
 
         // Title Section
         addParagraph(document, "RADHIKA ENTERPRISES", titleFont, Element.ALIGN_LEFT, 10);
@@ -84,7 +85,7 @@ public class GeneratePdfServiceImpl implements GeneratePdfService {
         addParagraph(document, "It uses a grid-tie interactive inverter that converts the direct current from the panels to alternating current to be used by the loads or transferred to the grid.", normalFont, Element.ALIGN_LEFT, 0);
         addParagraph(document, "This project will include the installation of the solar system consisting of rooftop mounting of Solar PV modules with mounting accessories, Net Meter, and MPPT solar grid-tie inverter.", normalFont, Element.ALIGN_LEFT, 0);
 
-        addMultipleNewLines(document, 1);
+        addMultipleNewLines(document, 2);
         // Proposed Site Table
         PdfPTable proposedSiteTable = createTable(2);
         proposedSiteTable.setWidthPercentage(100);
@@ -264,7 +265,7 @@ public class GeneratePdfServiceImpl implements GeneratePdfService {
         addParagraph(document, "RADHIKA ENTERPRISES", boldFont, Element.ALIGN_CENTER, 0);
         addParagraph(document, "GSTIN 23APSPB8959G2ZG", normalFont, Element.ALIGN_CENTER, 20);
         // Adding owner details to the document
-        String ownerDetails = getOwnerDetails("SANJAY BORIYA", "9993957179", "sanjayboriya13@gmail.com");
+        String ownerDetails = getOwnerDetails(AdminController.OWNER_NAME, AdminController.OWNER_CONTACT_NO, AdminController.OWNER_EMAIL);
         addParagraph(document, ownerDetails, normalFont, Element.ALIGN_CENTER, 10);
         addMultipleNewLines(document, 1);
 
