@@ -1,7 +1,7 @@
 services:
   - type: web
-    name: billGenerate
+    name: QuotationProject
     plan: free
     buildCommand: mvn clean package
-    startCommand: java -jar target/billGenerate.jar
+    startCommand: java -jar target/QuotationProject-0.0.1-SNAPSHOT.jar
 
