@@ -4,4 +4,3 @@ services:
     plan: free
     runtime: docker
     buildCommand: mvn clean package
-    startCommand: java -jar target/QuotationProject-0.0.1-SNAPSHOT.jar
