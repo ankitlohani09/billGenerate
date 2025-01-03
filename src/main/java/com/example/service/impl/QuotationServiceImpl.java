@@ -26,10 +26,8 @@ public class QuotationServiceImpl implements QuotationService {
     }
 
     public void saveQuotation(Quotation quotation) {
-
-
-        quotation.setSubject("Quotation for " + quotation.getPlantCapacity() + quotation.getOnOffGrid() + " solar system on Erection procurement and commissioning basis");
-
+        quotation.setSubject("Quotation for " + quotation.getPlantCapacity() + quotation.getOnOffGrid()
+                + " solar system on Erection procurement and commissioning basis");
         quotation.setModuleTechnology("144cell DCR Monoperc  Half cut Bifacial");
         quotation.setMountingStructureTechnology("Fixed Tilt");
         quotation.setProjectScheme("Turnkey Rooftop EPC");
@@ -48,7 +46,7 @@ public class QuotationServiceImpl implements QuotationService {
 
     public Quotation findQuotationById(Long id) {
         Optional<Quotation> quotation = quotationRepository.findById(id);
-        return quotation.orElseThrow(()-> new RuntimeException("Quotation not found"));
+        return quotation.orElseThrow(() -> new RuntimeException("Quotation not found"));
     }
 
     public void updateQuotation(Long id, Quotation quotation) {
