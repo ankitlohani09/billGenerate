@@ -1,23 +1,26 @@
 # Step 1: Use the official OpenJDK 17 image as base image
 FROM openjdk:17-jdk-slim
 
-# Step 2: Set the working directory inside the container
+# Step 2: Install Maven (for building the Spring Boot app)
+RUN apt-get update && apt-get install -y maven
+
+# Step 3: Set the working directory inside the container
 WORKDIR /app
 
-# Step 3: Copy the Maven build file (pom.xml) to the container
+# Step 4: Copy the Maven build file (pom.xml) to the container
 COPY pom.xml .
 
-# Step 4: Download the dependencies (for faster build caching)
+# Step 5: Download the dependencies (for faster build caching)
 RUN mvn dependency:go-offline
 
-# Step 5: Copy the rest of the application files (including source code)
+# Step 6: Copy the rest of the application files (including source code)
 COPY src /app/src
 
-# Step 6: Build the application (spring boot package)
+# Step 7: Build the application (Spring Boot package)
 RUN mvn clean package -DskipTests
 
-# Step 7: Expose the port Render expects (often 10000 or $PORT)
+# Step 8: Expose the port Render expects (often 10000 or $PORT)
 EXPOSE 10000
 
-# Step 8: Command to run the Spring Boot application with PORT environment variable
+# Step 9: Command to run the Spring Boot application with the PORT environment variable
 CMD ["java", "-jar", "target/QuotationProject-0.0.1-SNAPSHOT.jar", "--server.port=${PORT}"]
