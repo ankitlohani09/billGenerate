@@ -2,5 +2,5 @@ services:
   - type: web
     name: QuotationProject
     plan: free
-    runtime: docker
+    runtime: node
     buildCommand: mvn clean package
