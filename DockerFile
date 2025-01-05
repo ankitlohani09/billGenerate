@@ -16,8 +16,8 @@ COPY src /app/src
 # Step 6: Build the application (spring boot package)
 RUN mvn clean package -DskipTests
 
-# Step 7: Expose the port your app will run on (default is 8080 for Spring Boot)
-EXPOSE 8080
+# Step 7: Expose the port Render expects (often 10000 or $PORT)
+EXPOSE 10000
 
-# Step 8: Command to run the Spring Boot application
-CMD ["java", "-jar", "target/QuotationProject-0.0.1-SNAPSHOT.jar"]
+# Step 8: Command to run the Spring Boot application with PORT environment variable
+CMD ["java", "-jar", "target/QuotationProject-0.0.1-SNAPSHOT.jar", "--server.port=${PORT}"]
