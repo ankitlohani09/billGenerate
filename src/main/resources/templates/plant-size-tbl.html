@@ -1,0 +1,32 @@
+<section>
+    <table>
+        <tr>
+            <th>PLANT SIZE</th>
+            <th>Total Amount Payable</th>
+            <th>Direct Subsidy Benefit inconsumer account <br>
+                after commissioning of solar power plant.</th>
+        </tr>
+        <tr>
+            <td>
+                PRICES
+                <label id="plantSizeKWField" th:text="${quotation.plantCapacity}"></label>
+                <label id="plantSizeGrid" th:text="${quotation.onOffGrid}"></label>
+                POWER PLANT
+            </td>
+            <td>
+                <input id="totalAmountPayable"
+                       th:field="*{totalAmountPayable}"
+                       required
+                       type="text"
+                       placeholder="Enter Total Amount Payable">
+            </td>
+            <td>
+                <input id="directSubsidyBenefit"
+                       value="78000"
+                       name="directSubsidyBenefit"
+                       type="text"
+                       placeholder="Direct Subsidy Benefit">
+            </td>
+        </tr>
+    </table>
+</section>

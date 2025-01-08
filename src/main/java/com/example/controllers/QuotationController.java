@@ -7,6 +7,10 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
+import java.time.LocalDate;
+
+import static com.example.controllers.HomeController.*;
+
 @Controller
 @RequestMapping("/quotation")
 public class QuotationController {
@@ -29,6 +33,9 @@ public class QuotationController {
     public String showCreateQuotationForm(Model model) {
         Quotation quotation = new Quotation();
         model.addAttribute("quotation", quotation);
+        model.addAttribute("ownerName", OWNER_NAME);
+        model.addAttribute("currentDate", LocalDate.now());
+        model.addAttribute("offerValidity", OFFER_VALIDITY);
         return "create-quotation";
     }
 
@@ -44,6 +51,9 @@ public class QuotationController {
     public String showEditQuotationForm(@PathVariable Long id, Model model) {
         Quotation quotation = quotationService.findQuotationById(id);
         model.addAttribute("quotation", quotation);
+        model.addAttribute("ownerName", OWNER_NAME);
+        model.addAttribute("currentDate", LocalDate.now());
+        model.addAttribute("offerValidity", OFFER_VALIDITY);
         return "edit-quotation";
     }
 
@@ -65,6 +75,11 @@ public class QuotationController {
     @GetMapping("/view/{id}")
     public String viewQuotation(@PathVariable Long id, Model model) {
         Quotation quotation = quotationService.findQuotationById(id);
+
+
+
+        model.addAttribute("ownerName", OWNER_NAME);
+        model.addAttribute("offerValidity", OFFER_VALIDITY);
         model.addAttribute("quotation", quotation);
         return "view-quotation";
     }

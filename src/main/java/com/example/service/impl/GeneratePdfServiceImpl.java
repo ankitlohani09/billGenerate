@@ -74,8 +74,8 @@ public class GeneratePdfServiceImpl implements GeneratePdfService {
         document.add(new Paragraph("ADD: " + quotation.getAddress(), boldFont));
 
         // Adding the detailed text in the document
-        addMultipleNewLines(document, 3);
-        document.add(new Paragraph("Sub: Quotation for 3 KW on grid solar system on Erection procurement and commissioning basis", normalFont));
+        addMultipleNewLines(document, 2);
+        document.add(new Paragraph("Sub: Quotation for " + quotation.getPlantCapacity() + " " + quotation.getOnOffGrid() + " solar system on Erection procurement and commissioning basis", normalFont));
         document.add(Chunk.NEWLINE); // New line for readability
         addParagraph(document, "Thank you for selecting RADHIKA. Our company has provided ROOF TOP SOLAR SOLUTION and has built a reputation of integrity and efficiency.", normalFont, Element.ALIGN_LEFT, 0);
         addParagraph(document, "Our team has many years of experience and we are dedicated to providing you with the most up-to-date service possible.", normalFont, Element.ALIGN_LEFT, 0);
@@ -145,13 +145,12 @@ public class GeneratePdfServiceImpl implements GeneratePdfService {
         addTableCellWithBorder(technicalSpecificationsTable, "Component", boldFont, BaseColor.LIGHT_GRAY);
         addTableCellWithBorder(technicalSpecificationsTable, "Specification", boldFont, BaseColor.LIGHT_GRAY);
         addTableCellWithBorder(technicalSpecificationsTable, "Make", boldFont, BaseColor.LIGHT_GRAY);
-//        addTableCellWithBorder(technicalSpecificationsTable, "Z", boldFont, BaseColor.LIGHT_GRAY);
         addTableCellWithBorder(technicalSpecificationsTable, "Quantity", boldFont, BaseColor.LIGHT_GRAY);
 
         // Define the data for rows
         String[][] data = {
-                {"1", "Solar PV Module", "MONOPERC HALFCUT BIFACIAL PANEL 545WP 03 KW", "SUNBOND", quotation.getSolarPVModulesQty()},
-                {"2", "Solar Inverter", "On-grid type MPPT based solar inverter 3 KW", "V SOLE", quotation.getSolarInverterQty()},
+                {"1", "Solar PV Module", "MONOPERC HALFCUT BIFACIAL PANEL 545WP 03 KW", quotation.getSolarPVModulesMake(), quotation.getSolarPVModulesQty()},
+                {"2", "Solar Inverter", "On-grid type MPPT based solar inverter 3 KW", quotation.getSolarInverterMake(), quotation.getSolarInverterQty()},
                 {"3", "Mounting Structure", "Mounting Structure 140*60 MM & 41*41 Galvanized 3 KW", quotation.getMountingStructureQty()},
                 {"4", "AC Cables", "AC side-AL. ARMORED/COPPER FLEXIBLE (AS PER SIDE CONDITION)", "Polycab/ISI", quotation.getAcCablesQty()},
                 {"5", "DC Cables", "DC side copper", "Polycab/ISI", quotation.getDcCablesQty()},
@@ -183,7 +182,7 @@ public class GeneratePdfServiceImpl implements GeneratePdfService {
         addTableCellWithBorder(priceTable, "Total Amount Payable", boldFont, BaseColor.ORANGE);
         addTableCellWithBorder(priceTable, "Direct Subsidy Benefit in consumer account after commissioning of solar power plant:", boldFont, BaseColor.ORANGE);
 
-        addTableCellWithBorder(priceTable, quotation.getPlantSize(), boldFont, null);
+        addTableCellWithBorder(priceTable, "PRICES " + quotation.getPlantCapacity() + " " + quotation.getOnOffGrid() + " POWER PLANT", boldFont, null);
         addTableCellWithBorder(priceTable, quotation.getTotalAmountPayable(), boldFont, null);
         addTableCellWithBorder(priceTable, quotation.getDirectSubsidyBenefit(), boldFont, null);
 

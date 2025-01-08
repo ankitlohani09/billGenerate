@@ -5,8 +5,12 @@ import com.example.repository.QuotationRepository;
 import com.example.service.QuotationService;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDate;
 import java.util.List;
 import java.util.Optional;
+
+import static com.example.controllers.HomeController.OFFER_VALIDITY;
+import static com.example.controllers.HomeController.OWNER_NAME;
 
 @Service
 public class QuotationServiceImpl implements QuotationService {
@@ -22,12 +26,27 @@ public class QuotationServiceImpl implements QuotationService {
     }
 
     public void saveQuotation(Quotation quotation) {
+        quotation.setSubject("Quotation for " + quotation.getPlantCapacity() + quotation.getOnOffGrid()
+                + " solar system on Erection procurement and commissioning basis");
+        quotation.setModuleTechnology("144cell DCR Monoperc  Half cut Bifacial");
+        quotation.setMountingStructureTechnology("Fixed Tilt");
+        quotation.setProjectScheme("Turnkey Rooftop EPC");
+        quotation.setPowerEvacuation("220V - 320V");
+        quotation.setSolarPlantOutputConnection("To existing LT connection");
+        quotation.setApproxArea("210  sq. Feet Required");
+        quotation.setScheme("Captive - Net Metering");
+
+        quotation.setInquiryReceivedFrom(OWNER_NAME);
+        quotation.setProposalBasesInquiryReceivedDate(LocalDate.now());
+        quotation.setOfferValidity(OFFER_VALIDITY);
+
+        quotation.setProposalBasesInquiryReceivedDate(LocalDate.now());
         quotationRepository.save(quotation);
     }
 
     public Quotation findQuotationById(Long id) {
         Optional<Quotation> quotation = quotationRepository.findById(id);
-        return quotation.orElseThrow(()-> new RuntimeException("Quotation not found"));
+        return quotation.orElseThrow(() -> new RuntimeException("Quotation not found"));
     }
 
     public void updateQuotation(Long id, Quotation quotation) {

@@ -19,6 +19,7 @@ public class Quotation {
     private String address;
     private String subject;
     private String thankYou;
+    private String onOffGrid;
 
     private String proposedSiteName;
     private String location;
@@ -54,29 +55,11 @@ public class Quotation {
     private String totalAmountPayable;
     private String directSubsidyBenefit;
 
-    public String getPlantSize() {
-        return plantSize;
-    }
+    private String solarPVModulesMake;
+    private String solarInverterMake;
+    private String otherBrand;
 
-    public void setPlantSize(String plantSize) {
-        this.plantSize = plantSize;
-    }
 
-    public String getTotalAmountPayable() {
-        return totalAmountPayable;
-    }
-
-    public void setTotalAmountPayable(String totalAmountPayable) {
-        this.totalAmountPayable = totalAmountPayable;
-    }
-
-    public String getDirectSubsidyBenefit() {
-        return directSubsidyBenefit;
-    }
-
-    public void setDirectSubsidyBenefit(String directSubsidyBenefit) {
-        this.directSubsidyBenefit = directSubsidyBenefit;
-    }
 
     public Long getId() {
         return id;
@@ -132,6 +115,14 @@ public class Quotation {
 
     public void setThankYou(String thankYou) {
         this.thankYou = thankYou;
+    }
+
+    public String getOnOffGrid() {
+        return onOffGrid;
+    }
+
+    public void setOnOffGrid(String onOffGrid) {
+        this.onOffGrid = onOffGrid;
     }
 
     public String getProposedSiteName() {
@@ -340,6 +331,54 @@ public class Quotation {
 
     public void setNetMeterQty(String netMeterQty) {
         this.netMeterQty = netMeterQty;
+    }
+
+    public String getPlantSize() {
+        return plantSize;
+    }
+
+    public void setPlantSize(String plantSize) {
+        this.plantSize = plantSize;
+    }
+
+    public String getTotalAmountPayable() {
+        return totalAmountPayable;
+    }
+
+    public void setTotalAmountPayable(String totalAmountPayable) {
+        this.totalAmountPayable = totalAmountPayable;
+    }
+
+    public String getDirectSubsidyBenefit() {
+        return directSubsidyBenefit;
+    }
+
+    public void setDirectSubsidyBenefit(String directSubsidyBenefit) {
+        this.directSubsidyBenefit = directSubsidyBenefit;
+    }
+
+    public String getSolarPVModulesMake() {
+        return solarPVModulesMake;
+    }
+
+    public void setSolarPVModulesMake(String solarPVModulesMake) {
+        this.solarPVModulesMake = solarPVModulesMake;
+    }
+
+    public String getSolarInverterMake() {
+        return solarInverterMake;
+    }
+
+    public void setSolarInverterMake(String solarInverterMake) {
+        this.solarInverterMake = solarInverterMake;
+    }
+
+    public String getOtherBrand() {
+        return otherBrand;
+    }
+
+    public void setOtherBrand(String otherBrand) {
+        this.otherBrand = otherBrand;
     }
 }
 

@@ -11,238 +11,148 @@
 <h1 id="createNewQtHead">Create New Quotation</h1>
 
 <form method="post" id="createQuotationForm" th:action="@{/quotation/create}" th:object="${quotation}">
-    <table>
-        <tr>
-            <th colspan="2">Quotation Details</th>
-        </tr>
-        <tr>
-            <td>Name:</td>
-            <td><input id="name" required th:field="*{name}" type="text"></td>
-        </tr>
-        <tr>
-            <td>Mobile No:</td>
-            <td><input id="mobileNo" required th:field="*{mobileNo}" type="text"></td>
-        </tr>
-        <tr>
-            <td>Date:</td>
-            <td><input id="date" required th:field="*{date}" type="date"></td>
-        </tr>
-        <tr>
-            <td>Address:</td>
-            <td><textarea id="address" required th:field="*{address}"></textarea></td>
-        </tr>
-        <tr>
-            <td>Subject:</td>
-            <td><input id="subject" required th:field="*{subject}" type="text"></td>
-        </tr>
-        <tr>
-            <td>Thank You:</td>
-            <td><input id="thankYou" required th:field="*{thankYou}" type="text"></td>
-        </tr>
+    <section>
+        <h2>Quotation Details</h2>
+        <table>
+            <tr>
+                <td>Name:</td>
+                <td><input id="name" required th:field="*{name}" type="text"></td>
+            </tr>
+            <tr>
+                <td>Mobile No:</td>
+                <td><input id="mobileNo" required th:field="*{mobileNo}" type="text"></td>
+            </tr>
+            <tr>
+                <td>Date:</td>
+                <td><input id="date" required th:field="*{date}" type="date"></td>
+            </tr>
+            <tr>
+                <td>Address:</td>
+                <td><textarea id="address" required th:field="*{address}"></textarea></td>
+            </tr>
+            <tr>
+                <td>Subject:</td>
+                <td>
+                    Quotation for
+                    <input id="subjectPlantCapacity"
+                           th:field="*{plantCapacity}"
+                           placeholder="Plant Capacity"
+                           style="width: 70px">
+                    <select id="onOffGrid" th:field="*{onOffGrid}">
+                        <option value=" On Grid">On Grid</option>
+                        <option value=" Off Grid">Off Grid</option>
+                    </select>
+                    solar system on Erection procurement and commissioning basis
+                </td>
+            </tr>
+        </table>
+    </section>
 
-        <tr>
-            <th colspan="2">Proposed Site Details</th>
-        </tr>
-        <tr>
-            <td>Name:</td>
-            <td><input id="proposedSiteName" required th:field="*{proposedSiteName}" type="text"></td>
-        </tr>
-        <tr>
-            <td>Location:</td>
-            <td><input id="proposedSiteLocation" required th:field="*{location}" type="text"></td>
-        </tr>
+    <!-- Proposed Site Details Section -->
+    <section>
+        <h2>Proposed Site Details</h2>
+        <table>
+            <tr>
+                <td>Name:</td>
+                <td><input id="proposedSiteName" required th:field="*{proposedSiteName}" type="text"></td>
+            </tr>
+            <tr>
+                <td>Location:</td>
+                <td><input id="proposedSiteLocation" required th:field="*{location}" type="text"></td>
+            </tr>
+        </table>
+    </section>
 
-        <tr>
-            <th colspan="2">Solar PV System Specification</th>
-        </tr>
-        <tr>
-            <td>Plant Capacity:</td>
-            <td><input id="plantCapacity" required th:field="*{plantCapacity}" type="text"></td>
-        </tr>
-        <tr>
-            <td>Module Technology:</td>
-            <td><input id="moduleTechnology" required th:field="*{moduleTechnology}" type="text"></td>
-        </tr>
-        <tr>
-            <td>Mounting Structure Technology:</td>
-            <td><input id="mountingStructureTechnology" required th:field="*{mountingStructureTechnology}" type="text"></td>
-        </tr>
-        <tr>
-            <td>Project Scheme:</td>
-            <td><input id="projectScheme" required th:field="*{projectScheme}" type="text"></td>
-        </tr>
-        <tr>
-            <td>Power Evacuation:</td>
-            <td><input id="powerEvacuation" required th:field="*{powerEvacuation}" type="text"></td>
-        </tr>
-        <tr>
-            <td>Solar Plant Output Connection:</td>
-            <td><input id="solarPlantOutputConnection" required th:field="*{solarPlantOutputConnection}" type="text"></td>
-        </tr>
-        <tr>
-            <td>Approx. Area:</td>
-            <td><input id="approxArea" required th:field="*{approxArea}" type="text"></td>
-        </tr>
-        <tr>
-            <td>Scheme:</td>
-            <td><input id="scheme" required th:field="*{scheme}" type="text"></td>
-        </tr>
+    <!-- Solar PV System Specification Section -->
+    <section>
+        <h2>Solar PV System Specification</h2>
+        <table>
+            <tr>
+                <td>Plant Capacity:</td>
+                <td><input id="plantCapacity" value="" readonly type="text"></td>
+            </tr>
+            <tr>
+                <td>Module Technology:</td>
+                <td>144cell DCR Monoperc  Half cut Bifacial</td>
+            </tr>
+            <tr>
+                <td>Mounting Structure Technology:</td>
+                <td>Fixed Tilt</td>
+            </tr>
+            <tr>
+                <td>Project Scheme:</td>
+                <td>Turnkey Rooftop EPC</td>
+            </tr>
+            <tr>
+                <td>Power Evacuation:</td>
+                <td>220V - 320V</td>
+            </tr>
+            <tr>
+                <td>Solar Plant Output Connection:</td>
+                <td>To existing LT connection</td>
+            </tr>
+            <tr>
+                <td>Approx. Area:</td>
+                <td>210  sq. Feet Required</td>
+            </tr>
+            <tr>
+                <td>Scheme:</td>
+                <td>Captive - Net Metering</td>
+            </tr>
+        </table>
+    </section>
 
-        <tr>
-            <th colspan="2">Proposal Bases Inquiry Received</th>
-        </tr>
-        <tr>
-            <td>From:</td>
-            <td><input id="inquiryReceivedFrom" required th:field="*{inquiryReceivedFrom}" type="text"></td>
-        </tr>
-        <tr>
-            <td>Date:</td>
-            <td><input id="proposalBasesInquiryReceivedDate" th:field="*{proposalBasesInquiryReceivedDate}" type="date" required></td>
-        </tr>
-        <tr>
-            <td>Offer Validity:</td>
-            <td><input id="offerValidity" required th:field="*{offerValidity}" type="text"></td>
-        </tr>
-    </table>
+    <!-- Proposal Bases Inquiry Received Section -->
+    <section>
+        <h2>Proposal Bases Inquiry Received</h2>
+        <table>
+            <tr>
+                <td>From:</td>
+                <td th:text="${ownerName}"></td>
+            </tr>
+            <tr>
+                <td>Date:</td>
+                <td th:text="${currentDate}"></td>
+            </tr>
+            <tr>
+                <td>Offer Validity:</td>
+                <td th:text="${offerValidity}"></td>
+            </tr>
+        </table>
+    </section>
+
+    <!-- Technical Specifications and BOM Section -->
+    <div th:replace="~{technical-specifications-tbl}"></div>
+    <br><br>
+    <!-- Plant Size, Total Amount Payable, and Subsidy Section -->
+    <div th:replace="~{plant-size-tbl}"></div>
     <br>
-    <table id="technicalSpecificationsTable">
-        <tr>
-            <th colspan="6" id="technicalTableHead">Technical Specifications and BOM FOR 03 KW SOLAR POWER PLANT:</th>
-        </tr>
-        <tr>
-            <th>S No.</th>
-            <th>Components</th>
-            <th>Specifications</th>
-            <th>Make</th>
-            <th></th>
-            <th>Quantity</th>
-        </tr>
-        <tr>
-            <td>1</td>
-            <td>Solar PV Modules</td>
-            <td>MONOPERC HALFCUT BIFACIAL PANEL 545WP 03 KW</td>
-            <td>SUNBOND</td>
-            <td></td>
-            <td><input id="solarPVModulesQty" required th:field="*{solarPVModulesQty}" type="text"></td>
-        </tr>
-        <tr>
-            <td>2</td>
-            <td>Solar Inverter</td>
-            <td>On-grid type MPPT based solar inverter with grid energy export function 03 KW</td>
-            <td>V SOLE</td>
-            <td></td>
-            <td><input id="solarInverterQty" required th:field="*{solarInverterQty}" type="text"></td>
-        </tr>
-        <tr>
-            <td>3</td>
-            <td>Mounting Structure</td>
-            <td>Mounting Structure 140*60 MM & 41*41 Galvanized 3 KW</td>
-            <td></td>
-            <td></td>
-            <td><input id="mountingStructureQty" required th:field="*{mountingStructureQty}" type="text"></td>
-        </tr>
-        <tr>
-            <td>4</td>
-            <td>AC Cables</td>
-            <td>AC side-AL. ARMORED/COPPER FLEXIBLE (AS PER SIDE CONDITION)</td>
-            <td>Polycab/ISI</td>
-            <td></td>
-            <td><input id="acCablesQty" required th:field="*{acCablesQty}" type="text"></td>
-        </tr>
-        <tr>
-            <td>5</td>
-            <td>DC Cables</td>
-            <td>DC side copper</td>
-            <td>Polycab/ISI</td>
-            <td></td>
-            <td><input id="dcCablesQty" required th:field="*{dcCablesQty}" type="text"></td>
-        </tr>
-        <tr>
-            <td>6</td>
-            <td>Distribution Boxes (DC)</td>
-            <td>DC distribution box with built-in SPD and DC Fuses IP65 protected</td>
-            <td>HEVELLS & PHOENIX</td>
-            <td></td>
-            <td><input id="distributionBoxesDcQty" required th:field="*{distributionBoxesDcQty}" type="text"></td>
-        </tr>
-        <tr>
-            <td>7</td>
-            <td>Distribution Boxes (AC)</td>
-            <td>AC Combiner box with built-in SPD and AC MCB/MCCB IP65 protected Spike type lighting arrestor, 1 MTR</td>
-            <td>HEVELLS & PHOENIX</td>
-            <td></td>
-            <td><input id="distributionBoxesAcQty" required th:field="*{distributionBoxesAcQty}" type="text"></td>
-        </tr>
-        <tr>
-            <td>8</td>
-            <td>Earthling</td>
-            <td>Copper bonded chemical earthings. Insulated copper conductor for earthing connection</td>
-            <td>TRUE POWER</td>
-            <td></td>
-            <td><input id="earthlingQty" required th:field="*{earthlingQty}" type="text"></td>
-        </tr>
-        <tr>
-            <td>9</td>
-            <td>System Monitoring</td>
-            <td>Wi-Fi based Remote monitoring and weather monitoring system and data logger inbuilt in the inverter</td>
-            <td>AS PER INVERTER</td>
-            <td></td>
-            <td><input id="systemMonitoringQty" required th:field="*{systemMonitoringQty}" type="text"></td>
-        </tr>
-        <tr>
-            <td>10</td>
-            <td>MC4 Connectors</td>
-            <td>TUV approved, UV protected STD</td>
-            <td></td>
-            <td></td>
-            <td><input id="mc4ConnectorsQty" required th:field="*{mc4ConnectorsQty}" type="text"></td>
-        </tr>
-        <tr>
-            <td>11</td>
-            <td>Switchgears</td>
-            <td>MCBs, MCCBs, Isolators etc.</td>
-            <td>HAVELLS/ABB</td>
-            <td></td>
-            <td><input id="switchGearsQty" required th:field="*{switchGearsQty}" type="text"></td>
-        </tr>
-        <tr>
-            <td>12</td>
-            <td>Balance of System</td>
-            <td>TUV approved PVC conduits, cable ties, electric tapes, enclosures etc.</td>
-            <td>Polycab/Steel grip</td>
-            <td></td>
-            <td><input id="balanceOfSystemQty" required th:field="*{balanceOfSystemQty}" type="text"></td>
-        </tr>
-        <tr>
-            <td>13</td>
-            <td>Net Meter</td>
-            <td>Net meter and modem for MPEB</td>
-            <td>SECURE/HPL</td>
-            <td></td>
-            <td><input id="netMeterQty" required th:field="*{netMeterQty}" type="text"></td>
-        </tr>
-    </table>
-    <br><br>
-    <table>
-        <tr>
-            <th>PLANT SIZE</th>
-            <th>Total Amount Payable</th>
-            <th>Direct Subsidy Benefit</th>
-        </tr>
-        <tr>
-            <td><input id="plantSize" required th:field="*{plantSize}" type="text"></td>
-            <td><input id="totalAmountPayable" required th:field="*{totalAmountPayable}" type="text"></td>
-            <td><input id="directSubsidyBenefit" required th:field="*{directSubsidyBenefit}" type="text"></td>
-        </tr>
-    </table>
-    <br><br>
     <div id="createQuotationBtn">
-        <a class="btn btn-secondary" href="/">Got to Dashboard</a>
+        <a class="btn btn-secondary" href="/">Go to Dashboard</a>
         <button type="submit">Save Quotation</button>
     </div>
 </form>
 
 <div th:replace="~{common/footer}"></div>
+
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script>
+    $(document).ready(function() {
+        const syncPlantCapacity = function() {
+            const selectedValue = $("#subjectPlantCapacity").val();
+            $("#plantCapacity").val(selectedValue);
+            $("#plantSizeKWField").text(selectedValue);
+        };
+        const syncOnOffGrid = function() {
+            const selectedGridValue = $("#onOffGrid").val();
+            $("#plantSizeGrid").text(selectedGridValue);
+        };
+        $("#subjectPlantCapacity").on('input', syncPlantCapacity);
+        $("#onOffGrid").on('change', syncOnOffGrid);
+        syncPlantCapacity();
+        syncOnOffGrid();
+    });
+</script>
 </body>
 </html>
 

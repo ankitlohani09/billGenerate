@@ -10,101 +10,127 @@
 
 <div th:replace="~{common/header}"></div>
 
-<h1>Quotation</h1>
+<h1 style="text-align: center">Edit Quotation</h1>
 
-<form th:action="'/quotation/update/' + ${quotation.id}" method="post">
-    <table>
-        <tr>
-            <th>Name</th>
-            <td><input type="text" name="name" th:value="${quotation.name}" /></td>
-        </tr>
-        <tr>
-            <th>Mobile No.</th>
-            <td><input type="text" name="mobileNo" th:value="${quotation.mobileNo}" /></td>
-        </tr>
-        <tr>
-            <th>Date</th>
-            <td><input type="date" name="date" th:value="${quotation.date}" /></td>
-        </tr>
-        <tr>
-            <th>Address</th>
-            <td><input type="text" name="address" th:value="${quotation.address}" /></td>
-        </tr>
-        <tr>
-            <th>Sub</th>
-            <td><input type="text" name="subject" th:value="${quotation.subject}" /></td>
-        </tr>
-        <tr>
-            <th>Thank you</th>
-            <td><textarea name="thankYou" th:value="${quotation.thankYou}"></textarea></td>
-        </tr>
-    </table>
+<form th:action="'/quotation/update/' + ${quotation.id}" method="post" th:object="${quotation}">
+    <section>
+        <table>
+            <tr>
+                <td>Name:</td>
+                <td><input id="name" required th:field="*{name}" type="text"></td>
+            </tr>
+            <tr>
+                <td>Mobile No:</td>
+                <td><input id="mobileNo" required th:field="*{mobileNo}" type="text"></td>
+            </tr>
+            <tr>
+                <td>Date:</td>
+                <td><input id="date" required th:field="*{date}" type="date"></td>
+            </tr>
+            <tr>
+                <td>Address:</td>
+                <td><textarea id="address" required th:field="*{address}"></textarea></td>
+            </tr>
+            <tr>
+                <td>Subject:</td>
+                <td>
+                    Quotation for
+                    <input id="subjectPlantCapacity"
+                           th:field="*{plantCapacity}"
+                           placeholder="Plant Capacity"
+                           style="width: 70px">
+                    <select id="onOffGrid" th:field="*{onOffGrid}">
+                        <option value=" On Grid">On Grid</option>
+                        <option value=" Off Grid">Off Grid</option>
+                    </select>
+                    solar system on Erection procurement and commissioning basis
+                </td>
+            </tr>
+        </table>
+    </section>
 
-    <h2>Technical Proposal</h2>
-    <h3>Proposed Site</h3>
-    <table>
-        <tr>
-            <th>Name:</th>
-            <td><input type="text" name="proposedSiteName" th:value="${quotation.proposedSiteName}" /></td>
-        </tr>
-        <tr>
-            <th>Location:</th>
-            <td><input type="text" name="location" th:value="${quotation.location}" /></td>
-        </tr>
-        <tr>
-            <th>Solar PV System Specification</th>
-        </tr>
-        <tr>
-            <th>Plant Capacity:</th>
-            <td><input type="text" name="plantCapacity" th:value="${quotation.plantCapacity}" /></td>
-        </tr>
-        <tr>
-            <th>Module Technology</th>
-            <td><input type="text" name="moduleTechnology" th:value="${quotation.moduleTechnology}" /></td>
-        </tr>
-        <tr>
-            <th>Mounting Structure Technology</th>
-            <td><input type="text" name="mountingStructureTechnology" th:value="${quotation.mountingStructureTechnology}" /></td>
-        </tr>
-        <tr>
-            <th>Project Scheme:</th>
-            <td><input type="text" name="projectScheme" th:value="${quotation.projectScheme}" /></td>
-        </tr>
-        <tr>
-            <th>Power Evacuation</th>
-            <td><input type="text" name="powerEvacuation" th:value="${quotation.powerEvacuation}" /></td>
-        </tr>
-        <tr>
-            <th>Solar Plant Output Connection</th>
-            <td><input type="text" name="solarPlantOutputConnection" th:value="${quotation.solarPlantOutputConnection}" /></td>
-        </tr>
-        <tr>
-            <th>Approx. Area</th>
-            <td><input type="text" name="approxArea" th:value="${quotation.approxArea}" /></td>
-        </tr>
-        <tr>
-            <th>Scheme</th>
-            <td><input type="text" name="scheme" th:value="${quotation.scheme}" /></td>
-        </tr>
-        <tr>
-            <th>Proposal Based Inquiry Received</th>
-        </tr>
-        <tr>
-            <th>From:</th>
-            <td><input type="text" name="inquiryReceivedFrom" th:value="${quotation.inquiryReceivedFrom}" /></td>
-        </tr>
-        <tr>
-            <th>Date:</th>
-            <td><input type="date" name="proposalBasesInquiryReceivedDate" th:value="${quotation.proposalBasesInquiryReceivedDate}" /></td>
-        </tr>
-        <tr>
-            <th>Offer Validity:</th>
-            <td><input type="text" name="offerValidity" th:value="${quotation.offerValidity}" /></td>
-        </tr>
-    </table>
+    <!-- Proposed Site Details Section -->
+    <section>
+        <h2>Proposed Site Details</h2>
+        <table>
+            <tr>
+                <td>Name:</td>
+                <td><input id="proposedSiteName" required th:field="*{proposedSiteName}" type="text"></td>
+            </tr>
+            <tr>
+                <td>Location:</td>
+                <td><input id="proposedSiteLocation" required th:field="*{location}" type="text"></td>
+            </tr>
+        </table>
+    </section>
 
-    <button type="submit">Save Changes</button>
-    <a href="javascript:history.back()" class="btn btn-secondary">Back</a>
+    <!-- Solar PV System Specification Section -->
+    <section>
+        <h2>Solar PV System Specification</h2>
+        <table>
+            <tr>
+                <td>Plant Capacity:</td>
+                <td><input id="plantCapacity" value="" readonly type="text"></td>
+            </tr>
+            <tr>
+                <td>Module Technology:</td>
+                <td>144cell DCR Monoperc  Half cut Bifacial</td>
+            </tr>
+            <tr>
+                <td>Mounting Structure Technology:</td>
+                <td>Fixed Tilt</td>
+            </tr>
+            <tr>
+                <td>Project Scheme:</td>
+                <td>Turnkey Rooftop EPC</td>
+            </tr>
+            <tr>
+                <td>Power Evacuation:</td>
+                <td>220V - 320V</td>
+            </tr>
+            <tr>
+                <td>Solar Plant Output Connection:</td>
+                <td>To existing LT connection</td>
+            </tr>
+            <tr>
+                <td>Approx. Area:</td>
+                <td>210  sq. Feet Required</td>
+            </tr>
+            <tr>
+                <td>Scheme:</td>
+                <td>Captive - Net Metering</td>
+            </tr>
+        </table>
+    </section>
+
+    <!-- Proposal Bases Inquiry Received Section -->
+    <section>
+        <h2>Proposal Bases Inquiry Received</h2>
+        <table>
+            <tr>
+                <td>From:</td>
+                <td th:text="${ownerName}"></td>
+            </tr>
+            <tr>
+                <td>Date:</td>
+                <td th:text="${currentDate}"></td>
+            </tr>
+            <tr>
+                <td>Offer Validity:</td>
+                <td th:text="${offerValidity}"></td>
+            </tr>
+        </table>
+    </section>
+    <!-- Technical Specifications and BOM Section -->
+    <div th:replace="~{technical-specifications-tbl}"></div>
+    <br><br>
+    <!-- Plant Size, Total Amount Payable, and Subsidy Section -->
+    <div th:replace="~{plant-size-tbl}"></div>
+    <br>
+    <div id="createQuotationBtn">
+        <a class="btn btn-secondary" href="/">Go to Dashboard</a>
+        <button type="submit">Update Quotation</button>
+    </div>
 </form>
 <div th:replace="~{common/footer}"></div>
 </body>

@@ -34,10 +34,6 @@
         <td th:text="${quotation.subject}"></td>
     </tr>
     <tr>
-        <td>Thank You:</td>
-        <td th:text="${quotation.thankYou}"></td>
-    </tr>
-    <tr>
         <th colspan="2">Proposed Site</th>
     </tr>
     <tr>
@@ -88,7 +84,7 @@
     </tr>
     <tr>
         <td>From:</td>
-        <td th:text="${quotation.inquiryReceivedFrom}"></td>
+        <td th:text="${ownerName}"></td>
     </tr>
     <tr>
         <td>Date:</td>
@@ -96,7 +92,7 @@
     </tr>
     <tr>
         <td>Offer Validity:</td>
-        <td th:text="${quotation.offerValidity}"></td>
+        <td th:text="${offerValidity}"></td>
     </tr>
 </table>
 <br>
@@ -109,30 +105,26 @@
         <th>Components</th>
         <th>Specifications</th>
         <th>Make</th>
-        <th></th>
         <th>Quantity</th>
     </tr>
     <tr>
         <td>1</td>
         <td>Solar PV Modules</td>
         <td>MONOPERC HALFCUT BIFACIAL PANEL 545WP 03 KW</td>
-        <td>SUNBOND</td>
-        <td></td>
+        <td th:text="${quotation.solarPVModulesMake}"></td>
         <td th:text="${quotation.solarPVModulesQty}"></td>
     </tr>
     <tr>
         <td>2</td>
         <td>Solar Inverter</td>
         <td>On-grid type MPPT based solar inverter with grid energy export function 03 KW</td>
-        <td>V SOLE</td>
-        <td></td>
+        <td th:text="${quotation.solarInverterMake}"></td>
         <td th:text="${quotation.solarInverterQty}"></td>
     </tr>
     <tr>
         <td>3</td>
         <td>Mounting Structure</td>
         <td>Mounting Structure 140*60 MM & 41*41 Galvanized 3 KW</td>
-        <td></td>
         <td></td>
         <td th:text="${quotation.mountingStructureQty}"></td>
     </tr>
@@ -141,7 +133,6 @@
         <td>AC Cables</td>
         <td>AC side-AL. ARMORED/COPPER FLEXIBLE (AS PER SIDE CONDITION)</td>
         <td>Polycab/ISI</td>
-        <td></td>
         <td th:text="${quotation.acCablesQty}"></td>
     </tr>
     <tr>
@@ -149,7 +140,6 @@
         <td>DC Cables</td>
         <td>DC side copper</td>
         <td>Polycab/ISI</td>
-        <td></td>
         <td th:text="${quotation.dcCablesQty}"></td>
     </tr>
     <tr>
@@ -157,7 +147,6 @@
         <td>Distribution Boxes (DC)</td>
         <td>DC distribution box with built-in SPD and DC Fuses IP65 protected</td>
         <td>HEVELLS & PHOENIX</td>
-        <td></td>
         <td th:text="${quotation.distributionBoxesDcQty}"></td>
     </tr>
     <tr>
@@ -165,7 +154,6 @@
         <td>Distribution Boxes (AC)</td>
         <td>AC Combiner box with built-in SPD and AC MCB/MCCB IP65 protected Spike type lighting arrestor, 1 MTR</td>
         <td>HEVELLS & PHOENIX</td>
-        <td></td>
         <td th:text="${quotation.distributionBoxesAcQty}"></td>
     </tr>
     <tr>
@@ -173,7 +161,6 @@
         <td>Earthling</td>
         <td>Copper bonded chemical earthings. Insulated copper conductor for earthing connection</td>
         <td>TRUE POWER</td>
-        <td></td>
         <td th:text="${quotation.earthlingQty}"></td>
     </tr>
     <tr>
@@ -181,14 +168,12 @@
         <td>System Monitoring</td>
         <td>Wi-Fi based Remote monitoring and weather monitoring system and data logger inbuilt in the inverter</td>
         <td>AS PER INVERTER</td>
-        <td></td>
         <td th:text="${quotation.systemMonitoringQty}"></td>
     </tr>
     <tr>
         <td>10</td>
         <td>MC4 Connectors</td>
         <td>TUV approved, UV protected STD</td>
-        <td></td>
         <td></td>
         <td th:text="${quotation.mc4ConnectorsQty}"></td>
     </tr>
@@ -197,7 +182,6 @@
         <td>Switchgears</td>
         <td>MCBs, MCCBs, Isolators etc.</td>
         <td>HAVELLS/ABB</td>
-        <td></td>
         <td th:text="${quotation.switchGearsQty}"></td>
     </tr>
     <tr>
@@ -205,7 +189,6 @@
         <td>Balance of System</td>
         <td>TUV approved PVC conduits, cable ties, electric tapes, enclosures etc.</td>
         <td>Polycab/Steel grip</td>
-        <td></td>
         <td th:text="${quotation.balanceOfSystemQty}"></td>
     </tr>
     <tr>
@@ -213,7 +196,6 @@
         <td>Net Meter</td>
         <td>Net meter and modem for MPEB</td>
         <td>SECURE/HPL</td>
-        <td></td>
         <td th:text="${quotation.netMeterQty}"></td>
     </tr>
 </table>
@@ -225,7 +207,12 @@
         <th>Direct Subsidy Benefit</th>
     </tr>
     <tr>
-        <td th:text="${quotation.plantSize}"></td>
+        <td>
+            PRICES
+            <label th:text="${quotation.plantCapacity}"></label>
+            <label th:text="${quotation.onOffGrid}"></label>
+            POWER PLANT
+        </td>
         <td th:text="${quotation.totalAmountPayable}"></td>
         <td th:text="${quotation.directSubsidyBenefit}"></td>
     </tr>

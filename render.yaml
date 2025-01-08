@@ -1,0 +1,7 @@
+services:
+  - type: web
+    name: QuotationProject
+    plan: free
+    runtime: node
+    buildCommand: mvn clean package
+    startCommand: npm start
