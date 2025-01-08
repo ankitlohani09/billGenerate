@@ -23,7 +23,7 @@ table {
     margin: 0 auto;
     border-collapse: collapse;
     width: 70%;
-;
+    background-color: #f9f9f9;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     /*border-radius: 20px;*/
     overflow: hidden;
@@ -47,7 +47,7 @@ tr:last-child td {
 }
 
 tr:nth-child(even) {
-;
+    background-color: #f9f9f9;
 }
 
 /* Input and Textarea Styles */
@@ -155,7 +155,7 @@ div[th\:replace] {
 
 #technicalTableHead {
     text-align: center;
-;
+    background-color: #f9f9f9;
     color: #1a1a1a;
     font-size: 1.3rem;
 }

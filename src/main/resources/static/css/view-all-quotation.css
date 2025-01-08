@@ -1,7 +1,9 @@
 /* General Body Styling */
 body {
     font-family: 'Roboto', sans-serif;
+    background-color: #f0f2f5;
     margin: 0;
+    padding: 20px;
     color: #333;
 }
 
@@ -17,6 +19,7 @@ table {
     width: 100%;
     border-collapse: collapse;
     margin-bottom: 20px;
+    background-color: #fff;
 }
 
 th, td {
@@ -28,6 +31,14 @@ th, td {
 th {
     background-color: #007bff;
     color: #fff;
+}
+
+tr:nth-child(even) {
+    background-color: #f9f9f9;
+}
+
+tr:hover {
+    background-color: #f1f1f1;
 }
 
 /* Button Styling */
