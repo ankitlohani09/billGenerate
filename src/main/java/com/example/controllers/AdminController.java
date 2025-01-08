@@ -61,4 +61,9 @@ public class AdminController {
         model.addAttribute("ownerEmail", OWNER_EMAIL);
         return "redirect:/admin/manage";
     }
+
+    @GetMapping("/loginPage")
+    public String loginPage() {
+        return "/admin/loginPage";
+    }
 }

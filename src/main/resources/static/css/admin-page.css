@@ -1,45 +1,124 @@
-/* Admin Dashboard Container Styling */
-.admin-container {
-    max-width: 600px; /* Restrict container width for better layout */
-    margin: 0 auto; /* Center the container horizontally */
-    padding: 20px; /* Padding inside container */
-    background-color: #f9f9f9; /* Light background color */
-    border-radius: 8px; /* Rounded corners for the container */
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Box shadow for subtle depth effect */
+/* General Styles */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
 }
 
-/* Form Group Styling */
+body {
+    font-family: 'Arial', sans-serif;
+    background-color: #f4f6f9;
+    color: #333;
+}
+
+.admin-container {
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+h1.dashboard-title {
+    font-size: 2.2em;
+    color: #2c3e50;
+    text-align: center;
+    margin-bottom: 30px;
+    padding-bottom: 10px;
+    border-bottom: 2px solid #ecf0f1;
+}
+
+/* Section Styling */
+section.form-section {
+    margin-bottom: 40px;
+    background-color: #ecf0f1;
+    border-radius: 8px;
+    padding: 30px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+h2 {
+    font-size: 1.5em;
+    color: #2980b9;
+    margin-bottom: 20px;
+    font-weight: bold;
+}
+
 .form-group {
-    margin-bottom: 15px; /* Space between form elements */
+    margin-bottom: 20px;
 }
 
 label {
-    font-weight: bold; /* Label font weight for better visibility */
-    display: block; /* Display label as block */
-    margin-bottom: 5px; /* Space below the label */
+    font-size: 1em;
+    color: #34495e;
+    margin-bottom: 8px;
+    display: block;
 }
 
-/* Input Field Styling */
-input[type="text"] {
-    width: 100%; /* Full width for input */
-    padding: 8px; /* Padding inside the input field */
-    border: 1px solid #ccc; /* Border color for input field */
-    border-radius: 4px; /* Rounded corners for the input */
-    font-size: 16px; /* Font size for input */
+input[type="text"],
+input[type="file"] {
+    width: 100%;
+    padding: 12px;
+    font-size: 1em;
+    border: 1px solid #bdc3c7;
+    border-radius: 4px;
+    background-color: #fff;
+    margin-bottom: 20px;
+    transition: border-color 0.3s ease;
 }
 
-/* Submit Button Styling */
-.btn-change-logo {
-    background-color: #007bff; /* Blue button background */
+input[type="text"]:focus,
+input[type="file"]:focus {
+    border-color: #3498db;
+    outline: none;
+    background-color: #fff;
+}
+
+button {
+    width: 100%;
+    padding: 12px;
+    font-size: 1.1em;
+    background-color: #3498db;
     color: white;
     border: none;
-    padding: 10px 20px;
+    border-radius: 4px;
     cursor: pointer;
-    border-radius: 5px;
-    font-size: 16px;
-    transition: background-color 0.3s ease-in-out;
+    transition: background-color 0.3s ease;
 }
 
-.btn-change-logo:hover {
-    background-color: #0056b3; /* Darker blue on hover */
+button:hover {
+    background-color: #2980b9;
+}
+
+.btn-change-logo,
+.btn-upload-logo,
+.btn-change-ownerDetails {
+    background-color: #132730;
+}
+
+.btn-change-logo:hover,
+.btn-upload-logo:hover,
+.btn-change-ownerDetails:hover {
+    background-color: #184559;
+}
+
+/* Mobile Responsiveness */
+@media (max-width: 768px) {
+    .admin-container {
+        padding: 15px;
+    }
+
+    h1.dashboard-title {
+        font-size: 1.8em;
+    }
+
+    h2 {
+        font-size: 1.2em;
+    }
+
+    button {
+        font-size: 1em;
+    }
 }
