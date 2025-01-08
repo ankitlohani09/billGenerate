@@ -2,6 +2,7 @@
 <html>
 <head>
     <link rel="stylesheet" href="/css/common.css">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 </head>
 <body>
 <div class="header">
@@ -11,7 +12,36 @@
         <a href="/quotation/getAll">View Quotations</a>
         <a href="/quotation/showCreateForm">Create Quotation</a>
     </nav>
+    <div class="dark-mode-toggle-wrapper">
+        <label class="dark-mode-toggle">
+            <input id="darkModeToggle" type="checkbox">
+            <span class="slider">
+                <span class="inner-text">Dark Mode</span>
+            </span>
+        </label>
+    </div>
 </div>
 <hr>
+<script>
+    function darkModeToggleBtn() {
+        let $darkModeToggle = $("#darkModeToggle");
+        if (localStorage.getItem("theme") === "dark") {
+            $darkModeToggle.prop("checked", true);
+            $("body").addClass("dark-mode");
+            $(".inner-text").text("Light Mode").css("color", "white");
+        }
+        $darkModeToggle.change(function () {
+            const isChecked = this.checked;
+            $("body").toggleClass("dark-mode", isChecked);
+            localStorage.setItem("theme", isChecked ? "dark" : "light");
+            $(".inner-text").text(isChecked ? "Light Mode" : "Dark Mode")
+                .css("color", isChecked ? "white" : "black");
+        });
+    }
+
+    $(function () {
+        darkModeToggleBtn();
+    });
+</script>
 </body>
 </html>
