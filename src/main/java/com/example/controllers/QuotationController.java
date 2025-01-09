@@ -75,9 +75,6 @@ public class QuotationController {
     @GetMapping("/view/{id}")
     public String viewQuotation(@PathVariable Long id, Model model) {
         Quotation quotation = quotationService.findQuotationById(id);
-
-
-
         model.addAttribute("ownerName", OWNER_NAME);
         model.addAttribute("offerValidity", OFFER_VALIDITY);
         model.addAttribute("quotation", quotation);

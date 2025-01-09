@@ -10,8 +10,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 public class HomeController {
 
     public static String OWNER_NAME = "SANJAY BORIYA";
-//    public static String PLANT_CAPACITY = "03 KW";
-//    public static String ON_OFF_GRID = "on grid";
     public static String OFFER_VALIDITY = "10 Days from date of this offer";
 
     @GetMapping
