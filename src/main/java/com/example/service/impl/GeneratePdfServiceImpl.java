@@ -7,13 +7,11 @@ import com.example.service.GeneratePdfService;
 import com.itextpdf.text.*;
 import com.itextpdf.text.pdf.*;
 
+import jakarta.servlet.ServletContext;
 import org.springframework.stereotype.Service;
 
 import javax.imageio.ImageIO;
-import java.io.ByteArrayOutputStream;
-import java.io.FileNotFoundException;
-import java.io.IOException;
-import java.io.InputStream;
+import java.io.*;
 import java.util.Optional;
 
 @Service
@@ -21,8 +19,11 @@ public class GeneratePdfServiceImpl implements GeneratePdfService {
 
     private final QuotationRepository quotationRepository;
 
-    public GeneratePdfServiceImpl(QuotationRepository quotationRepository) {
+    private final ServletContext servletContext;
+
+    public GeneratePdfServiceImpl(QuotationRepository quotationRepository, ServletContext servletContext) {
         this.quotationRepository = quotationRepository;
+        this.servletContext = servletContext;
     }
 
     public byte[] generatePdfForQuotation(Long quotationId) throws DocumentException, IOException {
@@ -289,16 +290,33 @@ public class GeneratePdfServiceImpl implements GeneratePdfService {
     }
 
     private void addImageFromClasspath(Document document, String path, float width, float height, int alignment) {
-        try (InputStream inputStream = getClass().getClassLoader().getResourceAsStream(path)) {
-            if (inputStream == null) {
-                throw new FileNotFoundException("File not found: " + path);
+        InputStream inputStream = getClass().getClassLoader().getResourceAsStream(path);
+
+        if (inputStream == null) {
+            String realPath = servletContext.getRealPath(path);
+            if (realPath != null) {
+                realPath = realPath.replaceFirst("static\\\\static", "static");
+                File file = new File(realPath);
+                if (file.exists()) {
+                    try {
+                        inputStream = new FileInputStream(file);
+                    } catch (FileNotFoundException e) {
+                        throw new RuntimeException("File not found: " + realPath, e);
+                    }
+                }
             }
-            Image image = Image.getInstance(ImageIO.read(inputStream), null);
+            if (inputStream == null) {
+                throw new RuntimeException("File not found: " + path);
+            }
+        }
+        try (InputStream inputStreamFinal = inputStream) {
+            Image image = Image.getInstance(ImageIO.read(inputStreamFinal), null);
             image.scaleAbsolute(width, height);
             image.setAlignment(alignment);
             document.add(image);
         } catch (Exception e) {
             e.printStackTrace();
+            throw new RuntimeException("Error while adding image to PDF: " + e.getMessage(), e);
         }
     }
 

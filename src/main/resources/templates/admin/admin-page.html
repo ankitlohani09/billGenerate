@@ -15,18 +15,11 @@
     <!-- Logo Management Section -->
     <section class="form-section">
         <h2>Logo Management</h2>
-
-        <!-- Update Logo Path Form -->
-        <form action="/admin/manage/updateLogo" method="post" class="form-group">
-            <label for="logoPath">Logo Image Path:</label>
-            <input type="text" id="logoPath" name="logoPath" th:value="${logoPath}" required>
-            <button type="submit" class="btn-change-logo">Change Logo</button>
-        </form>
-
         <!-- Upload New Logo Form -->
         <form action="/admin/manage/uploadLogo" method="post" enctype="multipart/form-data" class="form-group">
             <label for="logoFile">Upload New Logo:</label>
             <input type="file" id="logoFile" name="logoFile" accept="image/*" required>
+            <p th:text="${error}" style="color: red"></p>
             <button type="submit" class="btn-upload-logo">Upload Logo</button>
         </form>
     </section>

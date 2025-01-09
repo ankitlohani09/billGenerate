@@ -10,6 +10,9 @@ import org.springframework.web.multipart.MultipartFile;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.Objects;
+
+import jakarta.servlet.ServletContext;
 
 @Controller
 @RequestMapping("/admin/manage")
@@ -20,7 +23,12 @@ public class AdminController {
     public static String OWNER_EMAIL = "sanjayboriya13@gmail.com";
 
     public static String LOGO_PATH = "static/image/LogoRadhikaHotelNoText.png";
-    private static final String UPLOAD_DIR = "src/main/resources/static/image/";
+    private static final String UPLOAD_DIR = "/image/";
+    private final ServletContext servletContext;
+
+    public AdminController(ServletContext servletContext) {
+        this.servletContext = servletContext;
+    }
 
     @GetMapping
     public String adminWorkPage(Model model) {
@@ -36,7 +44,19 @@ public class AdminController {
         if (!logoFile.isEmpty()) {
             try {
                 String fileName = logoFile.getOriginalFilename();
-                File destinationFile = new File(UPLOAD_DIR + fileName);
+                String realPath = servletContext.getRealPath(UPLOAD_DIR);
+                File uploadDir = new File(realPath);
+
+                if (!uploadDir.exists()) {
+                    boolean dirCreated = uploadDir.mkdirs();
+                    if (dirCreated) {
+                        System.out.println("Directory created successfully: " + uploadDir.getAbsolutePath());
+                    } else {
+                        System.out.println("Failed to create directory: " + uploadDir.getAbsolutePath());
+                    }
+                }
+
+                File destinationFile = new File(uploadDir, Objects.requireNonNull(fileName));
                 logoFile.transferTo(destinationFile);
                 LOGO_PATH = "static/image/" + fileName;
             } catch (IOException e) {
