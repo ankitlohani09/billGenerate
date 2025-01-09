@@ -17,7 +17,6 @@ body {
     width: 80%;
     margin: 40px auto;
     padding: 30px;
-    background-color: #fff;
     border-radius: 8px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
@@ -46,7 +45,7 @@ body {
 /* Form Group */
 .form-group {
     display: flex;
-    flex-direction: column;
+    flex-direction: row;
     gap: 15px;
 }
 

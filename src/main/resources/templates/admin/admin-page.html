@@ -19,7 +19,8 @@
         <form action="/admin/manage/uploadLogo" method="post" enctype="multipart/form-data" class="form-group">
             <label for="logoFile">Upload New Logo:</label>
             <input type="file" id="logoFile" name="logoFile" accept="image/*" required>
-            <p th:text="${error}" style="color: red"></p>
+            <p th:text="${errorMsg}" style="color: red"></p>
+            <p th:text="${successMessage}" style="color: green;"></p>
             <button type="submit" class="btn-upload-logo">Upload Logo</button>
         </form>
     </section>
@@ -45,3 +46,13 @@
 <div th:replace="~{common/footer}"></div>
 </body>
 </html>
+<script>
+    $(function () {
+        let formGroupClass = $(".form-group");
+        let isMobileDevice = [[${isMobileDevice}]]; // Directly assign the value from the backend
+        formGroupClass.css("flex-direction", isMobileDevice ? "column" : "row");
+        let headerOnAdminPage = $(".header h1");
+        headerOnAdminPage.css("letter-spacing", isMobileDevice ? "3px" : "1px")
+    })
+</script>
+

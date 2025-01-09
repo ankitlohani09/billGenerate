@@ -1,5 +1,6 @@
 package com.example.controllers;
 
+import jakarta.servlet.http.HttpServletRequest;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -13,6 +14,8 @@ import java.io.IOException;
 import java.util.Objects;
 
 import jakarta.servlet.ServletContext;
+
+import static com.example.controllers.HomeController.isMobileDevice;
 
 @Controller
 @RequestMapping("/admin/manage")
@@ -31,11 +34,12 @@ public class AdminController {
     }
 
     @GetMapping
-    public String adminWorkPage(Model model) {
+    public String adminWorkPage(Model model, HttpServletRequest request) {
         model.addAttribute("logoPath", LOGO_PATH);
         model.addAttribute("ownerName", OWNER_NAME);
         model.addAttribute("ownerContactNo", OWNER_CONTACT_NO);
         model.addAttribute("ownerEmail", OWNER_EMAIL);
+        model.addAttribute("isMobileDevice", isMobileDevice(request));
         return "admin/admin-page";
     }
 
@@ -59,15 +63,16 @@ public class AdminController {
                 File destinationFile = new File(uploadDir, Objects.requireNonNull(fileName));
                 logoFile.transferTo(destinationFile);
                 LOGO_PATH = "static/image/" + fileName;
+                model.addAttribute("successMessage", "Logo uploaded successfully!");
             } catch (IOException e) {
-                model.addAttribute("error", "Logo upload failed: " + e.getMessage());
+                model.addAttribute("errorMsg", "Logo upload failed: " + e.getMessage());
                 return "admin/admin-page";
             }
         } else {
             model.addAttribute("error", "Please select a file to upload.");
             return "admin/admin-page";
         }
-        return "redirect:/admin/manage";
+        return "admin/admin-page";
     }
 
     @PostMapping("/updateOwnerDetails")

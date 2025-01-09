@@ -6,7 +6,7 @@
     <title>Admin Login Page</title>
 </head>
 <body>
-<div class="login-container">
+<div class="login-container" id="loginContainer">
     <h2>Admin Login</h2>
     <form id="loginForm">
         <input type="text" id="username" placeholder="Username" required>
@@ -21,12 +21,22 @@
 <script>
     const validUsername = 'admin';
     const validPassword = 'admin';
+
+    const lastLoginTime = localStorage.getItem('lastLoginTime');
+    const currentTime = new Date().getTime();
+    if (lastLoginTime && (currentTime - lastLoginTime) < 30 * 60 * 1000) {
+        window.location.href = '/admin/manage';
+    }
     document.getElementById('loginForm').addEventListener('submit', function(event) {
         event.preventDefault();
         const username = document.getElementById('username').value;
         const password = document.getElementById('password').value;
-        if (username === validUsername && password === validPassword) window.location.href = '/admin/manage';
-        else document.getElementById('errorMessage').textContent = 'Invalid username or password.';
+        if (username === validUsername && password === validPassword) {
+            localStorage.setItem('lastLoginTime', currentTime);
+            window.location.href = '/admin/manage';
+        } else {
+            document.getElementById('errorMessage').textContent = 'Invalid username or password.';
+        }
     });
 </script>
 <style>
