@@ -25,7 +25,7 @@ public class AdminController {
     public static String OWNER_CONTACT_NO = "9993957179";
     public static String OWNER_EMAIL = "sanjayboriya13@gmail.com";
 
-    public static String LOGO_PATH = "static/image/LogoRadhikaHotelNoText.png";
+    public static String LOGO_PATH = "static/image/LogoImg.png";
     private static final String UPLOAD_DIR = "/image/";
     private final ServletContext servletContext;
 

@@ -55,7 +55,7 @@ public class GeneratePdfServiceImpl implements GeneratePdfService {
         addParagraph(document, "HEADING TOWARDS HEALTHIER EARTH", normalFont, Element.ALIGN_LEFT, 20);
 
         // Add Hotel Image
-        addImageFromClasspath(document, "static/image/HotelImg.png", 350, 250, Element.ALIGN_CENTER);
+        addImageFromClasspath(document, "static/image/DummyHotelImg.png", 350, 250, Element.ALIGN_CENTER);
 
         // Contact Information
         addParagraph(document, "E-Mail:  sanjayboriya13@gmail.com | Contact: 9993957179\n" +
