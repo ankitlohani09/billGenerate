@@ -16,7 +16,7 @@
     <section class="form-section">
         <h2>Logo Management</h2>
         <!-- Upload New Logo Form -->
-        <form action="/admin/manage/uploadLogo" method="post" enctype="multipart/form-data" class="form-group">
+        <form action="/logo/upload" method="post" enctype="multipart/form-data" class="form-group">
             <label for="logoFile">Upload New Logo:</label>
             <input type="file" id="logoFile" name="logoFile" accept="image/*" required>
             <p th:text="${errorMsg}" style="color: red"></p>

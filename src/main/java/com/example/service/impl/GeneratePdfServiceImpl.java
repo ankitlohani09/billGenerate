@@ -8,11 +8,15 @@ import com.itextpdf.text.*;
 import com.itextpdf.text.pdf.*;
 
 import jakarta.servlet.ServletContext;
+import org.apache.commons.io.IOUtils;
 import org.springframework.stereotype.Service;
 
 import javax.imageio.ImageIO;
 import java.io.*;
+import java.net.URL;
 import java.util.Optional;
+
+import static com.example.service.impl.LogoServiceImpl.S3_LOGO_URL;
 
 @Service
 public class GeneratePdfServiceImpl implements GeneratePdfService {
@@ -24,6 +28,15 @@ public class GeneratePdfServiceImpl implements GeneratePdfService {
     public GeneratePdfServiceImpl(QuotationRepository quotationRepository, ServletContext servletContext) {
         this.quotationRepository = quotationRepository;
         this.servletContext = servletContext;
+    }
+
+    private void addImageFromUrl(Document document, String imageUrl, float width, float height, int alignment) throws IOException, DocumentException {
+        try (InputStream inputStream = new URL(imageUrl).openStream()) {
+            Image image = Image.getInstance(IOUtils.toByteArray(inputStream));
+            image.scaleToFit(width, height); // Scale image to the given dimensions
+            image.setAlignment(alignment); // Align image as specified
+            document.add(image); // Add image to the document
+        }
     }
 
     public byte[] generatePdfForQuotation(Long quotationId) throws DocumentException, IOException {
@@ -48,7 +61,11 @@ public class GeneratePdfServiceImpl implements GeneratePdfService {
         Font smallerFont = new Font(normalFont.getBaseFont(), 8, Font.BOLD);
 
         // Add Logo
-        addImageFromClasspath(document, AdminController.LOGO_PATH, 120, 120, Element.ALIGN_RIGHT);
+        if (!S3_LOGO_URL.isEmpty()) {
+            addImageFromUrl(document, S3_LOGO_URL, 120, 120, Element.ALIGN_RIGHT);
+        } else {
+            addImageFromClasspath(document, AdminController.LOGO_PATH, 120, 120, Element.ALIGN_RIGHT);
+        }
 
         // Title Section
         addParagraph(document, "RADHIKA ENTERPRISES", titleFont, Element.ALIGN_LEFT, 10);
