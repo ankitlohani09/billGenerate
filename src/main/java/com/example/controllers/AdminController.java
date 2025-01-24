@@ -19,7 +19,7 @@ public class AdminController {
     public static String OWNER_EMAIL = "sanjayboriya13@gmail.com";
     public static String LOGO_PATH = "static/image/LogoImg.png";
 
-    @GetMapping
+    @GetMapping("/adminWorkPage")
     public String adminWorkPage(Model model, HttpServletRequest request) {
         model.addAttribute("ownerName", OWNER_NAME);
         model.addAttribute("ownerContactNo", OWNER_CONTACT_NO);
@@ -40,8 +40,8 @@ public class AdminController {
         return "redirect:/admin/manage";
     }
 
-    @GetMapping("/loginPage")
+    @GetMapping("/adminLoginPage")
     public String loginPage() {
-        return "admin/loginPage";
+        return "/admin/adminLoginPage";
     }
 }

@@ -2,12 +2,20 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
     <title>Admin - Dashboard</title>
-    <link rel="stylesheet" href="/css/admin-page.css">
+    <link href="/css/admin-page.css" rel="stylesheet">
 </head>
 <body>
+<script>
+    if (!localStorage.getItem('lastLoginTime')) {
+        alert("Arre bhai! Tum login nahi ho, pehle login karo aur phir dashboard ka maza lo!");
+        window.location.href = '/';
+    }
+</script>
 <div th:replace="~{common/header}"></div>
+<!-- Logout Button -->
+<button class="btn-logout" id="logoutBtn">Logout</button>
 
 <div class="admin-container">
     <h1 class="dashboard-title">Admin - Dashboard</h1>
@@ -16,34 +24,35 @@
     <section class="form-section">
         <h2>Logo Management</h2>
         <!-- Upload New Logo Form -->
-        <form action="/logo/upload" method="post" enctype="multipart/form-data" class="form-group">
+        <form action="/logo/upload" class="form-group" enctype="multipart/form-data" method="post">
             <label for="logoFile">Upload New Logo:</label>
-            <input type="file" id="logoFile" name="logoFile" accept="image/*" required>
-            <p th:text="${errorMsg}" style="color: red"></p>
-            <p th:text="${successMessage}" style="color: green;"></p>
-            <button type="submit" class="btn-upload-logo">Upload Logo</button>
+            <input accept="image/*" id="logoFile" name="logoFile" required type="file">
+            <p style="color: red" th:text="${errorMsg}"></p>
+            <p style="color: green;" th:text="${successMessage}"></p>
+            <button class="btn-upload-logo" type="submit">Upload Logo</button>
         </form>
     </section>
 
     <!-- Owner Details Management Section -->
     <section class="form-section">
         <h2>Owner Details</h2>
-        <form action="/admin/manage/updateOwnerDetails" method="post" class="form-group">
+        <form action="/admin/manage/updateOwnerDetails" class="form-group" method="post">
             <label for="ownerName">Owner Name:</label>
-            <input type="text" id="ownerName" name="ownerName" th:value="${ownerName}" required>
+            <input id="ownerName" name="ownerName" required th:value="${ownerName}" type="text">
 
             <label for="ownerContactNo">Owner Contact No.:</label>
-            <input type="text" id="ownerContactNo" name="ownerContactNo" th:value="${ownerContactNo}" required>
+            <input id="ownerContactNo" name="ownerContactNo" required th:value="${ownerContactNo}" type="text">
 
             <label for="ownerEmail">Owner Email:</label>
-            <input type="text" id="ownerEmail" name="ownerEmail" th:value="${ownerEmail}" required>
+            <input id="ownerEmail" name="ownerEmail" required th:value="${ownerEmail}" type="text">
 
-            <button type="submit" class="btn-change-ownerDetails">Update Owner Details</button>
+            <button class="btn-change-ownerDetails" type="submit">Update Owner Details</button>
         </form>
     </section>
 </div>
 
 <div th:replace="~{common/footer}"></div>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 </body>
 </html>
 <script>
@@ -54,5 +63,11 @@
         let headerOnAdminPage = $(".header h1");
         headerOnAdminPage.css("letter-spacing", isMobileDevice ? "3px" : "1px")
     })
+    // Logout functionality
+    document.getElementById('logoutBtn').addEventListener('click', function () {
+        // Remove 'lastLoginTime' from localStorage when logging out
+        localStorage.removeItem('lastLoginTime');
+        window.location.href = '/'; // Redirect to home or login page
+    });
 </script>
 
