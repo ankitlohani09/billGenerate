@@ -41,7 +41,6 @@ public class LogoServiceImpl implements LogoService {
         this.logoRepository = logoRepository;
         this.s3Client = S3Client.builder()
                 .region(Region.AP_SOUTH_1)
-                .credentialsProvider(ProfileCredentialsProvider.create())
                 .build();
     }
 

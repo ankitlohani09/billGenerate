@@ -210,7 +210,7 @@
         <td>
             PRICES
             <label th:text="${quotation.plantCapacity}"></label>
-            <label th:text="${quotation.onOffGrid}"></label>
+            <label th:text="${#strings.toUpperCase(quotation.onOffGrid)}"></label>
             POWER PLANT
         </td>
         <td th:text="${quotation.totalAmountPayable}"></td>
