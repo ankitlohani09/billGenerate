@@ -120,7 +120,7 @@
 
     // Redirect if last login was within 30 minutes
     if (lastLoginTime && (currentTime - lastLoginTime) < 30 * 60 * 1000) {
-        window.location.href = '/admin/manage';
+        window.location.href = '/admin/manage/adminWorkPage';
     }
 
     // Handle form submission
