@@ -98,7 +98,9 @@
 <br>
 <table>
     <tr>
-        <th colspan="6">Technical Specifications and BOM FOR 03 KW SOLAR POWER PLANT:</th>
+        <th colspan="6">
+            <span th:text="'Technical Specifications and BOM FOR ' + ${quotation.plantCapacity} + ' SOLAR POWER PLANT'"></span>
+        </th>
     </tr>
     <tr>
         <th>S No.</th>
@@ -110,22 +112,22 @@
     <tr>
         <td>1</td>
         <td>Solar PV Modules</td>
-        <td>MONOPERC HALFCUT BIFACIAL PANEL 545WP 03 KW</td>
+        <td th:text="'MONOPERC HALFCUT BIFACIAL PANEL 545WP ' + ${quotation.plantCapacity}"></td>
         <td th:text="${quotation.solarPVModulesMake}"></td>
         <td th:text="${quotation.solarPVModulesQty}"></td>
     </tr>
     <tr>
         <td>2</td>
         <td>Solar Inverter</td>
-        <td>On-grid type MPPT based solar inverter with grid energy export function 03 KW</td>
+        <td th:text="'On-grid type MPPT based solar inverter with grid energy export function ' + ${quotation.plantCapacity}"></td>
         <td th:text="${quotation.solarInverterMake}"></td>
         <td th:text="${quotation.solarInverterQty}"></td>
     </tr>
     <tr>
         <td>3</td>
         <td>Mounting Structure</td>
-        <td>Mounting Structure 140*60 MM & 41*41 Galvanized 3 KW</td>
-        <td></td>
+        <td>Mounting Structure 140*60 MM & 41*41</td>
+        <td>Galvanized</td>
         <td th:text="${quotation.mountingStructureQty}"></td>
     </tr>
     <tr>
@@ -224,7 +226,6 @@
     <a class="btn btn-primary" th:href="'/quotation/edit/' + ${quotation.id}">Edit</a>
     <a class="btn btn-green" th:href="'/generatePdf/' + ${quotation.id}">Generate PDF</a>
 </div>
-
 </body>
 <div th:replace="~{common/footer}"></div>
 </html>

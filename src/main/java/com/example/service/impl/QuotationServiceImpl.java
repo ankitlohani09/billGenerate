@@ -33,7 +33,7 @@ public class QuotationServiceImpl implements QuotationService {
         quotation.setProjectScheme("Turnkey Rooftop EPC");
         quotation.setPowerEvacuation("220V - 320V");
         quotation.setSolarPlantOutputConnection("To existing LT connection");
-        quotation.setApproxArea("210  sq. Feet Required");
+        quotation.setApproxArea(quotation.getApproxArea() +" sq. Feet Required");
         quotation.setScheme("Captive - Net Metering");
 
         quotation.setInquiryReceivedFrom(OWNER_NAME);

@@ -17,7 +17,7 @@ public class AdminController {
     public static String OWNER_NAME = "SANJAY BORIYA";
     public static String OWNER_CONTACT_NO = "9993957179";
     public static String OWNER_EMAIL = "sanjayboriya13@gmail.com";
-    public static String LOGO_PATH = "static/image/LogoImg.png";
+    public static String LOGO_PATH = "static/image/RE-Solar-Logo.png";
 
     @GetMapping("/adminWorkPage")
     public String adminWorkPage(Model model, HttpServletRequest request) {
