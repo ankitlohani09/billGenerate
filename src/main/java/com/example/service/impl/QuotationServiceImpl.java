@@ -36,11 +36,6 @@ public class QuotationServiceImpl implements QuotationService {
         quotation.setApproxArea(quotation.getApproxArea() +" sq. Feet Required");
         quotation.setScheme("Captive - Net Metering");
 
-        quotation.setInquiryReceivedFrom(OWNER_NAME);
-        quotation.setProposalBasesInquiryReceivedDate(LocalDate.now());
-        quotation.setOfferValidity(OFFER_VALIDITY);
-
-        quotation.setProposalBasesInquiryReceivedDate(LocalDate.now());
         quotationRepository.save(quotation);
     }
 

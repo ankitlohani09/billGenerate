@@ -93,7 +93,10 @@
             </tr>
             <tr>
                 <td>Approx. Area:</td>
-                <td><input id="approxAreaInput" required th:field="*{approxArea}" type="text" style="width: 10%"> sq. Feet Required</td>
+                <td>
+                    <input id="approxAreaInput" required th:field="*{approxArea}" type="text" style="width: 10%">
+                    <span>sq. Feet Required</span>
+                </td>
             </tr>
             <tr>
                 <td>Scheme:</td>
@@ -108,15 +111,15 @@
         <table>
             <tr>
                 <td>From:</td>
-                <td th:text="${ownerName}"></td>
+                <td><input id="inquiryReceivedFrom" required th:field="*{inquiryReceivedFrom}" type="text"></td>
             </tr>
             <tr>
                 <td>Date:</td>
-                <td th:text="${currentDate}"></td>
+                <td><input id="inquiryReceivedDate" required th:field="*{proposalBasesInquiryReceivedDate}" type="date"></td>
             </tr>
             <tr>
                 <td>Offer Validity:</td>
-                <td th:text="${offerValidity}"></td>
+                <td><input id="inquiryReceivedOfferValidity" required th:field="*{offerValidity}" type="text"></td>
             </tr>
         </table>
     </section>

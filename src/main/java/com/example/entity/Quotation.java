@@ -5,6 +5,7 @@ import lombok.AllArgsConstructor;
 import lombok.NoArgsConstructor;
 
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 
 @Entity
 @AllArgsConstructor
@@ -58,8 +59,6 @@ public class Quotation {
     private String solarPVModulesMake;
     private String solarInverterMake;
     private String otherBrand;
-
-
 
     public Long getId() {
         return id;
