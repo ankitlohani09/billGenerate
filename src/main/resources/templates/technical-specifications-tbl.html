@@ -1,6 +1,6 @@
 <!-- Technical Specifications and BOM Section -->
 <section>
-    <h2>Technical Specifications and BOM FOR SOLAR POWER PLANT:</h2>
+    <h2 id="technicalSpecificationsHead">Technical Specifications and BOM FOR SOLAR POWER PLANT:</h2>
     <table id="technicalSpecificationsTable">
         <tr>
             <th>S No.</th>
@@ -12,7 +12,7 @@
         <tr>
             <td>1</td>
             <td>Solar PV Modules</td>
-            <td>MONOPERC HALFCUT BIFACIAL PANEL 545WP </td>
+            <td id="solarPvMdlSpecification">MONOPERC HALFCUT BIFACIAL PANEL 545WP </td>
             <td>
                 <select id="solarPVModulesMake" th:field="*{solarPVModulesMake}" onchange="toggleOtherInput('solarPVModules')">
                     <option value="SUNBOND">SUNBOND</option>
@@ -29,7 +29,7 @@
         <tr>
             <td>2</td>
             <td>Solar Inverter</td>
-            <td>On-grid type MPPT based solar inverter with grid energy export function </td>
+            <td id="solarInverterSpecification">On-grid type MPPT based solar inverter with grid energy export function </td>
             <td>
                 <select id="solarInverterMake" th:field="*{solarInverterMake}" onchange="toggleOtherInput('solarInverter')">
                     <option value="V SOLE">V SOLE</option>

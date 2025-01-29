@@ -140,13 +140,25 @@
     $(document).ready(function() {
         const syncPlantCapacity = function() {
             const selectedValue = $("#subjectPlantCapacity").val();
-            $("#plantCapacity").val(selectedValue);
-            $("#plantSizeKWField").text(selectedValue);
+            if (selectedValue === "") {
+                $("#plantCapacity").val("__");
+                $("#plantSizeKWField").text("__");
+                $("#technicalSpecificationsHead").text("Technical Specifications and BOM FOR __ SOLAR POWER PLANT:");
+                $("#solarPvMdlSpecification").text("MONOPERC HALFCUT BIFACIAL PANEL 545WP __");
+                $("#solarInverterSpecification").text("On-grid type MPPT based solar inverter with grid energy export function __");
+            } else {
+                $("#plantCapacity").val(selectedValue);
+                $("#plantSizeKWField").text(selectedValue);
+                $("#technicalSpecificationsHead").text("Technical Specifications and BOM FOR " + selectedValue + " SOLAR POWER PLANT:");
+                $("#solarPvMdlSpecification").text("MONOPERC HALFCUT BIFACIAL PANEL 545WP " + selectedValue);
+                $("#solarInverterSpecification").text("On-grid type MPPT based solar inverter with grid energy export function " + selectedValue);
+            }
         };
         const syncOnOffGrid = function() {
             const selectedGridValue = $("#onOffGrid").val();
-            $("#plantSizeGrid").text(selectedGridValue);
+            $("#plantSizeGrid").text(selectedGridValue.toUpperCase());
         };
+
         $("#subjectPlantCapacity").on('input', syncPlantCapacity);
         $("#onOffGrid").on('change', syncOnOffGrid);
         syncPlantCapacity();

@@ -53,8 +53,9 @@ public class GeneratePdfServiceImpl implements GeneratePdfService {
         PdfWriter.getInstance(document, outputStream);
         document.open();
 
+        BaseColor darkBlueColour = new BaseColor(34, 9, 86);
         // Custom Fonts
-        Font titleFont = new Font(Font.FontFamily.HELVETICA, 20, Font.BOLD, BaseColor.BLUE);
+        Font titleFont = new Font(Font.FontFamily.HELVETICA, 20, Font.BOLD, darkBlueColour);
         Font headerFont = new Font(Font.FontFamily.HELVETICA, 14, Font.BOLD, BaseColor.BLACK);
         Font boldFont = new Font(Font.FontFamily.HELVETICA, 12, Font.BOLD, BaseColor.BLACK);
         Font normalFont = new Font(Font.FontFamily.HELVETICA, 12, Font.NORMAL, BaseColor.BLACK);
@@ -196,9 +197,11 @@ public class GeneratePdfServiceImpl implements GeneratePdfService {
 
         PdfPTable priceTable = createTable(3);
 
-        addTableCellWithBorder(priceTable, "PLANT SIZE", boldFont, BaseColor.ORANGE);
-        addTableCellWithBorder(priceTable, "Total Amount Payable", boldFont, BaseColor.ORANGE);
-        addTableCellWithBorder(priceTable, "Direct Subsidy Benefit in consumer account after commissioning of solar power plant:", boldFont, BaseColor.ORANGE);
+        BaseColor lightOrange = new BaseColor(249,190,143);
+
+        addTableCellWithBorder(priceTable, "PLANT SIZE", boldFont, lightOrange);
+        addTableCellWithBorder(priceTable, "Total Amount Payable", boldFont, lightOrange);
+        addTableCellWithBorder(priceTable, "Direct Subsidy Benefit in consumer account after commissioning of solar power plant:", boldFont, lightOrange);
 
         addTableCellWithBorder(priceTable, "PRICES " + quotation.getPlantCapacity() + " " + quotation.getOnOffGrid().toUpperCase() + " POWER PLANT", boldFont, null);
         addTableCellWithBorder(priceTable, quotation.getTotalAmountPayable(), boldFont, null);
@@ -321,7 +324,7 @@ public class GeneratePdfServiceImpl implements GeneratePdfService {
         }
         // Agar "HEADING TOWARDS HEALTHIER EARTH" text ho toh dark green color apply karna
         else if (text.equals("HEADING TOWARDS HEALTHIER EARTH")) {
-            Font coloredFont = new Font(font.getFamily(), font.getSize(), font.getStyle(), new BaseColor(20, 100, 30));
+            Font coloredFont = new Font(font.getFamily(), font.getSize(), font.getStyle(), new BaseColor(85, 107, 47));
             paragraph = new Paragraph();
             paragraph.add(new Chunk(text, coloredFont));
             paragraph.setAlignment(alignment);
