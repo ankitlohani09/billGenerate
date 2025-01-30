@@ -120,7 +120,7 @@
 
     // Redirect if last login was within 30 minutes
     if (lastLoginTime && (currentTime - lastLoginTime) < 30 * 60 * 1000) {
-        window.location.href = '/admin/manage/adminWorkPage';
+        window.location.href = '/admin/dashboard';
     }
 
     // Handle form submission
@@ -131,7 +131,7 @@
 
         if (username === validUsername && password === validPassword) {
             localStorage.setItem('lastLoginTime', currentTime);
-            window.location.href = '/admin/manage/adminWorkPage';
+            window.location.href = '/admin/dashboard';
         } else {
             document.getElementById('errorMessage').textContent = 'Invalid username or password.';
         }

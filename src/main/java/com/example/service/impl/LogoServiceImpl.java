@@ -29,6 +29,7 @@ public class LogoServiceImpl implements LogoService {
     private static final Logger logger = LoggerFactory.getLogger(LogoServiceImpl.class);
     public static String S3_LOGO_URL = "";
     private final S3Client s3Client;
+    public static String LOCAL_LOGO_PATH = "static/image/RE-Solar-Logo.png";
 
     @Value("${aws.s3.bucketName}")
     private String bucketName;
@@ -74,6 +75,7 @@ public class LogoServiceImpl implements LogoService {
         Logo newLogo = new Logo();
         newLogo.setLogoName(file.getOriginalFilename());
         newLogo.setS3Url(s3LogoUrl);
+        newLogo.setLocalLogoPath(LOCAL_LOGO_PATH);
         newLogo.setUploadedDate(LocalDateTime.now());
         return logoRepository.save(newLogo);
     }

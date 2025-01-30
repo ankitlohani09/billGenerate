@@ -1,48 +1,71 @@
 package com.example.controllers;
 
-import jakarta.servlet.http.HttpServletRequest;
+import com.example.entity.Admin;
+import com.example.entity.Logo;
+import com.example.service.impl.AdminServiceImpl;
+import com.example.service.impl.LogoServiceImpl;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 
-import static com.example.controllers.HomeController.isMobileDevice;
+import java.io.IOException;
+import java.util.List;
 
 @Controller
-@RequestMapping("/admin/manage")
+@RequestMapping("/admin")
 public class AdminController {
 
     public static String OWNER_NAME = "SANJAY BORIYA";
     public static String OWNER_CONTACT_NO = "9993957179,8435555882";
     public static String OWNER_EMAIL = "radhikasolar10@gmail.com";
     public static String OWNER_ADDRESS = "Near Radhika Hotel Dewas Naka Indore M.P.";
-    public static String LOGO_PATH = "static/image/RE-Solar-Logo.png";
 
-    @GetMapping("/adminWorkPage")
-    public String adminWorkPage(Model model, HttpServletRequest request) {
-        model.addAttribute("ownerName", OWNER_NAME);
-        model.addAttribute("ownerContactNo", OWNER_CONTACT_NO);
-        model.addAttribute("ownerEmail", OWNER_EMAIL);
-        model.addAttribute("ownerAddress", OWNER_ADDRESS);
-        model.addAttribute("isMobileDevice", isMobileDevice(request));
-        return "admin/admin-page";
+    private final AdminServiceImpl adminServiceImpl;
+    private final LogoServiceImpl logoServiceImpl;
+
+    public AdminController(AdminServiceImpl adminServiceImpl, LogoServiceImpl logoServiceImpl) {
+        this.adminServiceImpl = adminServiceImpl;
+        this.logoServiceImpl = logoServiceImpl;
     }
 
-    @PostMapping("/updateOwnerDetails")
-    public String updateOwnerDetails(@RequestParam("ownerName") String ownerName, @RequestParam("ownerContactNo") String ownerContactNo,
-                                     @RequestParam("ownerEmail") String ownerEmail, @RequestParam("ownerAddress") String ownerAddress ,
-                                     Model model) {
-        OWNER_NAME = ownerName;
-        OWNER_CONTACT_NO = ownerContactNo;
-        OWNER_EMAIL = ownerEmail;
-        OWNER_ADDRESS = ownerAddress;
-        model.addAttribute("ownerName", OWNER_NAME);
-        model.addAttribute("ownerContactNo", OWNER_CONTACT_NO);
-        model.addAttribute("ownerEmail", OWNER_EMAIL);
-        model.addAttribute("ownerAddress", OWNER_ADDRESS);
-        return "redirect:/admin/manage/adminWorkPage";
+    @GetMapping("/dashboard")
+    public String getAdminDashboard(Model model) {
+        Admin admin = adminServiceImpl.getAdminDetails(1L);
+        List<Logo> logos = logoServiceImpl.getAllLogos();
+        logos.forEach(logo -> {
+            model.addAttribute("logoUrl", logo.getS3Url());
+        });
+        model.addAttribute("ownerName", admin.getOwnerName());
+        model.addAttribute("ownerContactNo", admin.getOwnerContactNo());
+        model.addAttribute("ownerEmail", admin.getOwnerEmail());
+        model.addAttribute("ownerAddress", admin.getOwnerAddress());
+
+        return "admin/dashboard";
+    }
+
+    @PostMapping("/manage/updateOwnerDetails")
+    public String updateOwnerDetails(Admin admin, Model model) {
+        Admin response = adminServiceImpl.updateAdminDetails(admin);
+        model.addAttribute("ownerName", response.getOwnerName());
+        model.addAttribute("ownerContactNo", response.getOwnerContactNo());
+        model.addAttribute("ownerEmail", response.getOwnerEmail());
+        model.addAttribute("ownerAddress", response.getOwnerAddress());
+        return "redirect:/admin/dashboard";
+    }
+
+    @PostMapping("/logo/upload")
+    public String uploadLogo(@RequestParam("logoFile") MultipartFile logoFile, Model model) {
+        try {
+            Logo logo = logoServiceImpl.uploadLogo(logoFile);
+            if (logo != null) {
+                getAdminDashboard(model);
+                model.addAttribute("successMessage", "Logo uploaded successfully!");
+            }
+        } catch (IOException e) {
+            model.addAttribute("errorMsg", "Error uploading logo. Please try again.");
+        }
+        return "admin/dashboard";
     }
 
     @GetMapping("/adminLoginPage")

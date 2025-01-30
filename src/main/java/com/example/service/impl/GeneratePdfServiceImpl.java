@@ -1,6 +1,6 @@
 package com.example.service.impl;
 
-import com.example.controllers.AdminController;
+import com.example.entity.Admin;
 import com.example.entity.Quotation;
 import com.example.repository.QuotationRepository;
 import com.example.service.GeneratePdfService;
@@ -25,9 +25,12 @@ public class GeneratePdfServiceImpl implements GeneratePdfService {
 
     private final ServletContext servletContext;
 
-    public GeneratePdfServiceImpl(QuotationRepository quotationRepository, ServletContext servletContext) {
+    private final AdminServiceImpl adminServiceImpl;
+
+    public GeneratePdfServiceImpl(QuotationRepository quotationRepository, ServletContext servletContext, AdminServiceImpl adminServiceImpl) {
         this.quotationRepository = quotationRepository;
         this.servletContext = servletContext;
+        this.adminServiceImpl = adminServiceImpl;
     }
 
     private void addImageFromUrl(Document document, String imageUrl, float width, float height, int alignment) throws IOException, DocumentException {
@@ -65,7 +68,7 @@ public class GeneratePdfServiceImpl implements GeneratePdfService {
         if (!S3_LOGO_URL.isEmpty()) {
             addImageFromUrl(document, S3_LOGO_URL, 120, 120, Element.ALIGN_RIGHT);
         } else {
-            addImageFromClasspath(document, AdminController.LOGO_PATH, 120, 120, Element.ALIGN_RIGHT);
+            addImageFromClasspath(document, LogoServiceImpl.LOCAL_LOGO_PATH, 120, 120, Element.ALIGN_RIGHT);
         }
 
         // Title Section
@@ -76,11 +79,13 @@ public class GeneratePdfServiceImpl implements GeneratePdfService {
         addImageFromClasspath(document, "static/image/DummyHotelImg.png", 390, 300, Element.ALIGN_CENTER);
         addMultipleNewLines(document, 2);
 
+        Admin adminDetail = adminServiceImpl.getAdminDetails(1L);
+
         // Contact Information
-        addParagraph(document,"Contact : " + AdminController.OWNER_CONTACT_NO + "\n" +
+        addParagraph(document,"Contact : " + adminDetail.getOwnerContactNo() + "\n" +
                 "E-Mail :-\n" +
-                 AdminController.OWNER_EMAIL+" \n" +
-                "Address : " + AdminController.OWNER_ADDRESS + " \n" +
+                 adminDetail.getOwnerEmail() + " \n" +
+                "Address : " + adminDetail.getOwnerAddress() + " \n" +
                 "GST Registration Number: 23APSPB8959G2ZG",
                 boldFont, Element.ALIGN_LEFT, 15);
 
