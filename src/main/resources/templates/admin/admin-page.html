@@ -45,6 +45,9 @@
             <label for="ownerEmail">Owner Email:</label>
             <input id="ownerEmail" name="ownerEmail" required th:value="${ownerEmail}" type="text">
 
+            <label for="ownerAddress">Owner Address:</label>
+            <input id="ownerAddress" name="ownerAddress" required th:value="${ownerAddress}" type="text">
+
             <button class="btn-change-ownerDetails" type="submit">Update Owner Details</button>
         </form>
     </section>
@@ -56,9 +59,7 @@
 </html>
 <script>
     $(function () {
-        let formGroupClass = $(".form-group");
         let isMobileDevice = [[${isMobileDevice}]]; // Directly assign the value from the backend
-        formGroupClass.css("flex-direction", isMobileDevice ? "column" : "row");
         let headerOnAdminPage = $(".header h1");
         headerOnAdminPage.css("letter-spacing", isMobileDevice ? "3px" : "1px")
     })
@@ -79,7 +80,6 @@
 
     body {
         font-family: Arial, sans-serif;
-        background-color: #f4f4f4;
         margin: 0;
     }
 
@@ -88,7 +88,6 @@
         max-width: 800px;
         margin: 20px auto;
         padding: 20px;
-        background-color: #fff;
         border-radius: 8px;
         box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
     }
@@ -96,7 +95,6 @@
     .dashboard-title {
         text-align: center;
         margin-bottom: 20px;
-        color: #333;
         font-size: 1.8rem;
     }
 
@@ -119,7 +117,6 @@
     label {
         font-size: 1rem;
         margin-bottom: 5px;
-        color: #555;
     }
 
     input[type="text"],

@@ -73,14 +73,18 @@ public class GeneratePdfServiceImpl implements GeneratePdfService {
         addParagraph(document, "HEADING TOWARDS HEALTHIER EARTH", boldFont, Element.ALIGN_LEFT, 20);
 
         // Add Hotel Image
-        addImageFromClasspath(document, "static/image/DummyHotelImg.png", 350, 250, Element.ALIGN_CENTER);
+        addImageFromClasspath(document, "static/image/DummyHotelImg.png", 390, 300, Element.ALIGN_CENTER);
+        addMultipleNewLines(document, 2);
 
         // Contact Information
-        addParagraph(document, "E-Mail:  " + AdminController.OWNER_EMAIL + " | Contact: " + AdminController.OWNER_CONTACT_NO + "\n" +
-                        "Address: Radhika Hotel Dewas Naka Indore M.P.\nGST Registration Number: 23APSPB8959G2ZG",
+        addParagraph(document,"Contact : " + AdminController.OWNER_CONTACT_NO + "\n" +
+                "E-Mail :-\n" +
+                 AdminController.OWNER_EMAIL+" \n" +
+                "Address : " + AdminController.OWNER_ADDRESS + " \n" +
+                "GST Registration Number: 23APSPB8959G2ZG",
                 boldFont, Element.ALIGN_LEFT, 15);
 
-        addMultipleNewLines(document, 2);
+        addMultipleNewLines(document, 6);
 
         // Quotation Details Table
         Paragraph paragraph = new Paragraph("QUOTATION – " + quotationId, headerFont);
@@ -270,7 +274,7 @@ public class GeneratePdfServiceImpl implements GeneratePdfService {
                 "labor, raw material, causes whatsoever beyond our reasonable control, affecting us or our subcontractors, " +
                 "suppliers. ", normalFont, Element.ALIGN_LEFT, 10);
 
-        addMultipleNewLines(document,5);
+        addMultipleNewLines(document,2);
         // Add Bank Details
         addParagraph(document, "“ RADHIKA ENTERPRISES ”", boldFont, Element.ALIGN_CENTER, 10);
         addParagraph(document, "ACCOUNT DETAILS -", boldFont, Element.ALIGN_LEFT, 10);
@@ -287,8 +291,8 @@ public class GeneratePdfServiceImpl implements GeneratePdfService {
         addParagraph(document, "RADHIKA ENTERPRISES", boldFont, Element.ALIGN_CENTER, 0);
         addParagraph(document, "GSTIN 23APSPB8959G2ZG", normalFont, Element.ALIGN_CENTER, 20);
         // Adding owner details to the document
-        String ownerDetails = getOwnerDetails(AdminController.OWNER_NAME, AdminController.OWNER_CONTACT_NO, AdminController.OWNER_EMAIL);
-        addParagraph(document, ownerDetails, normalFont, Element.ALIGN_CENTER, 10);
+//        String ownerDetails = getOwnerDetails(AdminController.OWNER_NAME, AdminController.OWNER_CONTACT_NO);
+//        addParagraph(document, ownerDetails, normalFont, Element.ALIGN_CENTER, 10);
         addMultipleNewLines(document, 1);
 
         document.close();
