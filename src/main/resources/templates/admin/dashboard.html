@@ -22,8 +22,15 @@
     <!-- Logo Management Section -->
     <section class="form-section">
         <h2>Logo Management</h2>
+
+        <!-- Display Current Logo -->
+        <div class="logo-preview">
+            <h3>Current Logo:</h3>
+            <img th:if="${logoUrl}" th:src="${logoUrl}" alt="Current Logo" class="uploaded-logo">
+        </div>
+
         <!-- Upload New Logo Form -->
-        <form action="/logo/upload" class="form-group" enctype="multipart/form-data" method="post">
+        <form action="/admin/logo/upload" class="form-group" enctype="multipart/form-data" method="post">
             <label for="logoFile">Upload New Logo:</label>
             <input accept="image/*" id="logoFile" name="logoFile" required type="file">
             <p style="color: red" th:text="${errorMsg}"></p>
@@ -51,23 +58,77 @@
             <button class="btn-change-ownerDetails" type="submit">Update Owner Details</button>
         </form>
     </section>
+
+
 </div>
 
 <div th:replace="~{common/footer}"></div>
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 </body>
 </html>
-<script>
-    $(function () {
-        let isMobileDevice = [[${isMobileDevice}]]; // Directly assign the value from the backend
+<script th:inline="javascript">
+    $(document).ready(function () {
+        // Logout functionality
+        $('#logoutBtn').on('click', function () {
+            localStorage.removeItem('lastLoginTime');
+            window.location.href = '/';
+        });
+
+        // Logo Upload via AJAX
+        $('form[action="/admin/logo/upload"]').submit(function (e) {
+            e.preventDefault();
+            let formData = new FormData(this);
+            let $submitBtn = $(this).find('button');
+
+            $submitBtn.prop('disabled', true).text("Uploading...");
+
+            $.ajax({
+                url: '/admin/logo/upload',
+                type: 'POST',
+                data: formData,
+                processData: false,
+                contentType: false,
+                success: function (response) {
+                    location.reload();
+                    alert('Logo uploaded successfully!');
+                },
+                error: function () {
+                    alert('Error uploading logo!');
+                },
+                complete: function () {
+                    $submitBtn.prop('disabled', false).text("Upload Logo");
+                }
+            });
+        });
+
+        // Update Owner Details Via Ajax
+        $('form[action="/admin/manage/updateOwnerDetails"]').submit(function (e) {
+            e.preventDefault();
+            let formData = $(this).serialize();
+            let $submitBtn = $(this).find('button');
+
+            $submitBtn.prop('disabled', true).text("Updating...");
+
+            $.ajax({
+                url: '/admin/manage/updateOwnerDetails',
+                type: 'POST',
+                data: formData,
+                success: function (response) {
+                    alert('Owner details updated successfully!');
+                },
+                error: function () {
+                    alert('Failed updating owner details!');
+                },
+                complete: function () {
+                    $submitBtn.prop('disabled', false).text("Update Owner Details");
+                }
+            });
+        });
+
+        // Adjust header spacing based on device type
+        let isMobileDevice = [[${isMobileDevice}]];
         let headerOnAdminPage = $(".header h1");
-        headerOnAdminPage.css("letter-spacing", isMobileDevice ? "3px" : "1px")
-    })
-    // Logout functionality
-    document.getElementById('logoutBtn').addEventListener('click', function () {
-        // Remove 'lastLoginTime' from localStorage when logging out
-        localStorage.removeItem('lastLoginTime');
-        window.location.href = '/'; // Redirect to home or login page
+        headerOnAdminPage.css("letter-spacing", isMobileDevice ? "3px" : "1px");
     });
 </script>
 <style>
@@ -128,12 +189,6 @@
         font-size: 1rem;
     }
 
-    input[type="text"]:focus,
-    input[type="file"]:focus {
-        border-color: #007bff;
-        outline: none;
-    }
-
     button {
         padding: 10px;
         background-color: #007bff;
@@ -165,6 +220,22 @@
 
     #logoutBtn:hover {
         background-color: #c0392b;
+    }
+
+    .logo-preview {
+        margin-bottom: 15px;
+        text-align: center;
+    }
+
+    .uploaded-logo {
+        max-width: 200px;
+        height: auto;
+        display: block;
+        margin: 10px auto;
+        border: 1px solid #ddd;
+        border-radius: 5px;
+        padding: 5px;
+        background: #f9f9f9;
     }
 
     /* Mobile-Responsive Styles */

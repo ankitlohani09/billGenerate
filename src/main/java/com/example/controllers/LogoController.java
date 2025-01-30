@@ -5,11 +5,8 @@ import com.example.service.LogoService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.web.multipart.MultipartFile;
 
-import java.io.IOException;
 import java.util.List;
 
 @Controller
@@ -25,19 +22,6 @@ public class LogoController {
     @GetMapping("/getAll")
     public List<Logo> getAllLogos() {
         return logoService.getAllLogos();
-    }
-
-    // Endpoint to upload logo
-    @PostMapping("/upload")
-    public String uploadLogo(@RequestParam("logoFile") MultipartFile file, Model model) {
-        try {
-            Logo logo = logoService.uploadLogo(file);
-            model.addAttribute("successMessage", "Logo uploaded successfully!");
-            model.addAttribute("logo", logo);
-        } catch (IOException e) {
-            model.addAttribute("errorMsg", "Error uploading logo. Please try again.");
-        }
-        return "admin/admin-page";
     }
 
     @GetMapping("/name/{logoName}")

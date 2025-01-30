@@ -14,6 +14,8 @@ public class Logo {
 
     private String s3Url;
 
+    private String localLogoPath;
+
     private LocalDateTime uploadedDate;
 
     @Version
@@ -26,6 +28,14 @@ public class Logo {
         this.logoName = logoName;
         this.s3Url = s3Url;
         this.uploadedDate = uploadedDate;
+    }
+
+    public String getLocalLogoPath() {
+        return localLogoPath;
+    }
+
+    public void setLocalLogoPath(String localLogoPath) {
+        this.localLogoPath = localLogoPath;
     }
 
     public int getVersion() {
