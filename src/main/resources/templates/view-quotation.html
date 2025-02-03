@@ -225,6 +225,7 @@
     <a class="btn btn-primary" href="/">Home</a>
     <a class="btn btn-primary" th:href="'/quotation/edit/' + ${quotation.id}">Edit</a>
     <a class="btn btn-green" th:href="'/generatePdf/' + ${quotation.id}">Generate PDF</a>
+    <a class="btn btn-green" th:href="'/generatePdf/server2/' + ${quotation.id}">Generate PDF - Server2</a>
 </div>
 </body>
 <div th:replace="~{common/footer}"></div>

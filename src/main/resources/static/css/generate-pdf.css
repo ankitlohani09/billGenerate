@@ -1,0 +1,168 @@
+/* General Styles */
+body {
+    font-family: 'Arial', sans-serif;
+    font-size: 14px;
+    margin: 0;
+    padding: 0;
+    background-color: #f8f8f8;
+    color: #333;
+}
+
+.container {
+    width: 80%;
+    max-width: 900px;
+    margin: 20px auto;
+    padding: 20px;
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+/* Header Section */
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-bottom: 10px;
+    margin-bottom: 20px;
+}
+
+.header-left {
+    padding-top: 150px;
+}
+
+.header-left h1 {
+    font-size: 22px;
+    color: #241773;
+    margin: 0;
+}
+
+.header-left p {
+    font-size: 14px;
+    font-weight: bold;
+    color: #095d2d;
+    margin: 5px 0;
+}
+
+.header-right {
+    text-align: right;
+}
+
+.header-right img {
+    max-width: 180px;
+    height: auto;
+}
+
+.hotel-img-div {
+    text-align: center; /* Image ko center align karega */
+    margin: 10px 0;
+}
+
+.hotel-image {
+    width: 80%;
+    max-width: 500px;
+    height: 500px;
+}
+
+.admin-detail-top p {
+    font-size: 14px;
+    font-weight: 700;
+}
+
+.quotation-customer-detail h2{
+    text-align: center;
+    margin-top: 80px;
+}
+
+/* Contact Info */
+p {
+    font-size: 14px;
+    margin: 5px 0;
+}
+
+/* Section Titles */
+.section {
+    margin-top: 40px;
+}
+
+.section h2 {
+    padding: 10px;
+    border-radius: 5px;
+    font-size: 18px;
+    text-align: center;
+}
+
+.section h3 {
+    font-size: 16px;
+    margin-top: 10px;
+}
+
+/* Table Styling */
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 10px;
+    font-size: 14px;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+th, td {
+    border: 1px solid #ddd;
+    padding: 8px;
+    text-align: left;
+}
+
+th {
+    background-color: #f2f2f2;
+    font-weight: bold;
+}
+
+
+/* Footer */
+.footer {
+    text-align: center;
+    margin-top: 20px;
+    padding-top: 10px;
+}
+
+.footer h2 {
+    font-size: 18px;
+}
+
+.footer p {
+    font-size: 14px;
+    margin: 5px 0;
+}
+
+/* Print Styling */
+@media print {
+    body {
+        background: none;
+        color: black;
+    }
+    .container {
+        box-shadow: none;
+        border: none;
+    }
+    .section h2 {
+        background: #000;
+        color: #fff;
+    }
+}
+.print-button {
+    background-color: #4CAF50;
+    color: white;
+    padding: 10px 20px;
+    font-size: 16px;
+    border: none;
+    cursor: pointer;
+    margin-top: 20px;
+}
+
+.print-button:hover {
+    background-color: #45a049;
+}
