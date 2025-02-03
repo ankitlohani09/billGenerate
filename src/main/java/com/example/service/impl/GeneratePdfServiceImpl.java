@@ -16,8 +16,6 @@ import java.io.*;
 import java.net.URL;
 import java.util.Optional;
 
-import static com.example.service.impl.LogoServiceImpl.S3_LOGO_URL;
-
 @Service
 public class GeneratePdfServiceImpl implements GeneratePdfService {
 
@@ -65,8 +63,8 @@ public class GeneratePdfServiceImpl implements GeneratePdfService {
         Font smallerFont = new Font(normalFont.getBaseFont(), 8, Font.BOLD);
 
         // Add Logo
-        if (!S3_LOGO_URL.isEmpty()) {
-            addImageFromUrl(document, S3_LOGO_URL, 120, 120, Element.ALIGN_RIGHT);
+        if (!LogoServiceImpl.S3_LOGO_URL.isEmpty()) {
+            addImageFromUrl(document, LogoServiceImpl.S3_LOGO_URL, 120, 120, Element.ALIGN_RIGHT);
         } else {
             addImageFromClasspath(document, LogoServiceImpl.LOCAL_LOGO_PATH, 120, 120, Element.ALIGN_RIGHT);
         }
@@ -295,22 +293,10 @@ public class GeneratePdfServiceImpl implements GeneratePdfService {
         // Add Contact Details
         addParagraph(document, "RADHIKA ENTERPRISES", boldFont, Element.ALIGN_CENTER, 0);
         addParagraph(document, "GSTIN 23APSPB8959G2ZG", normalFont, Element.ALIGN_CENTER, 20);
-        // Adding owner details to the document
-//        String ownerDetails = getOwnerDetails(AdminController.OWNER_NAME, AdminController.OWNER_CONTACT_NO);
-//        addParagraph(document, ownerDetails, normalFont, Element.ALIGN_CENTER, 10);
         addMultipleNewLines(document, 1);
 
         document.close();
         return outputStream.toByteArray();
-    }
-
-    // Method to generate formatted owner details
-    private String getOwnerDetails(String name, String contact, String email) {
-        return String.format("""
-            Name: %s
-            Contact: %s
-            Email: %s
-            """, name, contact, email);
     }
 
     private void addParagraph(Document document, String text, Font font, int alignment, float spacingAfter) throws DocumentException {

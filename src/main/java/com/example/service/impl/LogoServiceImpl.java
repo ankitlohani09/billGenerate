@@ -27,9 +27,10 @@ public class LogoServiceImpl implements LogoService {
 
     private final LogoRepository logoRepository;
     private static final Logger logger = LoggerFactory.getLogger(LogoServiceImpl.class);
-    public static String S3_LOGO_URL = "";
+    public static String S3_LOGO_URL = "https://radhika-hotel-s3-bucket.s3.ap-south-1.amazonaws.com/logo/RE-Solar-Logo.png";
     private final S3Client s3Client;
     public static String LOCAL_LOGO_PATH = "static/image/RE-Solar-Logo.png";
+    public static String S3_DUMMY_HOTEL_IMG_SRC = "https://radhika-hotel-s3-bucket.s3.amazonaws.com/logo/DummyHotelImg.png";
 
     @Value("${aws.s3.bucketName}")
     private String bucketName;
