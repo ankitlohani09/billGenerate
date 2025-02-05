@@ -74,7 +74,7 @@ public class GeneratePdfServiceImpl implements GeneratePdfService {
         addParagraph(document, "HEADING TOWARDS HEALTHIER EARTH", boldFont, Element.ALIGN_LEFT, 20);
 
         // Add Hotel Image
-        addImageFromClasspath(document, "static/image/DummyHotelImg.png", 390, 300, Element.ALIGN_CENTER);
+        addImageFromClasspath(document, LogoServiceImpl.S3_DUMMY_HOTEL_IMG_SRC, 390, 300, Element.ALIGN_CENTER);
         addMultipleNewLines(document, 2);
 
         Admin adminDetail = adminServiceImpl.getAdminDetails(1L);

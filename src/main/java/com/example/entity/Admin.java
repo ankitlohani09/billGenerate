@@ -1,8 +1,18 @@
 package com.example.entity;
 
 import jakarta.persistence.*;
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+
+import java.util.Set;
 
 @Entity
+@AllArgsConstructor
+@NoArgsConstructor
+@Getter
+@Setter
 @Table(name = "admin_detail")
 public class Admin {
     @Id
@@ -15,74 +25,7 @@ public class Admin {
     private String ownerEmail;
     private String ownerAddress;
 
-    // Constructors
-    public Admin() {
-    }
-
-    public Admin(Long id, String username, String password, String ownerName, String ownerContactNo, String ownerEmail, String ownerAddress) {
-        this.id = id;
-        this.username = username;
-        this.password = password;
-        this.ownerName = ownerName;
-        this.ownerContactNo = ownerContactNo;
-        this.ownerEmail = ownerEmail;
-        this.ownerAddress = ownerAddress;
-    }
-
-    // Getters and Setters
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
-
-    public String getUsername() {
-        return username;
-    }
-
-    public void setUsername(String username) {
-        this.username = username;
-    }
-
-    public String getPassword() {
-        return password;
-    }
-
-    public void setPassword(String password) {
-        this.password = password;
-    }
-
-    public String getOwnerName() {
-        return ownerName;
-    }
-
-    public void setOwnerName(String ownerName) {
-        this.ownerName = ownerName;
-    }
-
-    public String getOwnerContactNo() {
-        return ownerContactNo;
-    }
-
-    public void setOwnerContactNo(String ownerContactNo) {
-        this.ownerContactNo = ownerContactNo;
-    }
-
-    public String getOwnerEmail() {
-        return ownerEmail;
-    }
-
-    public void setOwnerEmail(String ownerEmail) {
-        this.ownerEmail = ownerEmail;
-    }
-
-    public String getOwnerAddress() {
-        return ownerAddress;
-    }
-
-    public void setOwnerAddress(String ownerAddress) {
-        this.ownerAddress = ownerAddress;
-    }
+    @ManyToMany(fetch = FetchType.EAGER)
+    @JoinTable(name = "admin_roles", joinColumns = @JoinColumn(name = "user_id"), inverseJoinColumns = @JoinColumn(name = "role_id"))
+    private Set<Role> roles;
 }
