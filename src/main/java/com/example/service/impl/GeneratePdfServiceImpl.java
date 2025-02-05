@@ -16,19 +16,21 @@ import java.io.*;
 import java.net.URL;
 import java.util.Optional;
 
+import static com.example.service.impl.LogoServiceImpl.LOCAL_LOGO_PATH;
+
 @Service
 public class GeneratePdfServiceImpl implements GeneratePdfService {
 
     private final QuotationRepository quotationRepository;
-
     private final ServletContext servletContext;
-
     private final AdminServiceImpl adminServiceImpl;
+    private final LogoServiceImpl logoServiceImpl;
 
-    public GeneratePdfServiceImpl(QuotationRepository quotationRepository, ServletContext servletContext, AdminServiceImpl adminServiceImpl) {
+    public GeneratePdfServiceImpl(QuotationRepository quotationRepository, ServletContext servletContext, AdminServiceImpl adminServiceImpl, LogoServiceImpl logoServiceImpl) {
         this.quotationRepository = quotationRepository;
         this.servletContext = servletContext;
         this.adminServiceImpl = adminServiceImpl;
+        this.logoServiceImpl = logoServiceImpl;
     }
 
     private void addImageFromUrl(Document document, String imageUrl, float width, float height, int alignment) throws IOException, DocumentException {
@@ -63,18 +65,22 @@ public class GeneratePdfServiceImpl implements GeneratePdfService {
         Font smallerFont = new Font(normalFont.getBaseFont(), 8, Font.BOLD);
 
         // Add Logo
-        if (!LogoServiceImpl.S3_LOGO_URL.isEmpty()) {
-            addImageFromUrl(document, LogoServiceImpl.S3_LOGO_URL, 120, 120, Element.ALIGN_RIGHT);
-        } else {
-            addImageFromClasspath(document, LogoServiceImpl.LOCAL_LOGO_PATH, 120, 120, Element.ALIGN_RIGHT);
-        }
+//        if (!LogoServiceImpl.S3_LOGO_URL.isEmpty()) {
+//            addImageFromUrl(document, LogoServiceImpl.S3_LOGO_URL, 120, 120, Element.ALIGN_RIGHT);
+//        } else {
+
+        String localLogoPath = logoServiceImpl.getLocalLogoPath();
+        boolean noLogoAvailable = localLogoPath.contains("No logo available");
+        localLogoPath = noLogoAvailable ? LOCAL_LOGO_PATH : localLogoPath;
+        addImageFromClasspath(document, localLogoPath, 120, 120, Element.ALIGN_RIGHT);
+      //  }
 
         // Title Section
         addParagraph(document, "RADHIKA ENTERPRISES", titleFont, Element.ALIGN_LEFT, 10);
         addParagraph(document, "HEADING TOWARDS HEALTHIER EARTH", boldFont, Element.ALIGN_LEFT, 20);
 
         // Add Hotel Image
-        addImageFromClasspath(document, "static/image/DummyHotelImg.png", 390, 300, Element.ALIGN_CENTER);
+        addImageFromClasspath(document, LogoServiceImpl.LOCAL_DUMMYHOTEL_PATH, 390, 300, Element.ALIGN_CENTER);
         addMultipleNewLines(document, 2);
 
         Admin adminDetail = adminServiceImpl.getAdminDetails(1L);

@@ -1,7 +1,6 @@
 package com.example.entity;
 
 import jakarta.persistence.*;
-
 import java.time.LocalDateTime;
 
 @Entity
@@ -11,11 +10,7 @@ public class Logo {
     private Long id;
 
     private String logoName;
-
-    private String s3Url;
-
     private String localLogoPath;
-
     private LocalDateTime uploadedDate;
 
     @Version
@@ -24,26 +19,10 @@ public class Logo {
     public Logo() {
     }
 
-    public Logo(String logoName, String s3Url, LocalDateTime uploadedDate) {
+    public Logo(String logoName, String localLogoPath, LocalDateTime uploadedDate) {
         this.logoName = logoName;
-        this.s3Url = s3Url;
-        this.uploadedDate = uploadedDate;
-    }
-
-    public String getLocalLogoPath() {
-        return localLogoPath;
-    }
-
-    public void setLocalLogoPath(String localLogoPath) {
         this.localLogoPath = localLogoPath;
-    }
-
-    public int getVersion() {
-        return version;
-    }
-
-    public void setVersion(int version) {
-        this.version = version;
+        this.uploadedDate = uploadedDate;
     }
 
     public Long getId() {
@@ -62,12 +41,12 @@ public class Logo {
         this.logoName = logoName;
     }
 
-    public String getS3Url() {
-        return s3Url;
+    public String getLocalLogoPath() {
+        return localLogoPath;
     }
 
-    public void setS3Url(String s3Url) {
-        this.s3Url = s3Url;
+    public void setLocalLogoPath(String localLogoPath) {
+        this.localLogoPath = localLogoPath;
     }
 
     public LocalDateTime getUploadedDate() {
@@ -76,5 +55,13 @@ public class Logo {
 
     public void setUploadedDate(LocalDateTime uploadedDate) {
         this.uploadedDate = uploadedDate;
+    }
+
+    public int getVersion() {
+        return version;
+    }
+
+    public void setVersion(int version) {
+        this.version = version;
     }
 }

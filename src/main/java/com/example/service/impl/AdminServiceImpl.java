@@ -9,6 +9,11 @@ import java.util.Optional;
 @Service
 public class AdminServiceImpl implements AdminService {
 
+    public static String OWNER_NAME = "SANJAY BORIYA";
+    public static String OWNER_CONTACT_NO = "9993957179,8435555882";
+    public static String OWNER_EMAIL = "radhikasolar10@gmail.com";
+    public static String OWNER_ADDRESS = "Near Radhika Hotel Dewas Naka Indore M.P.";
+
     private final AdminRepository adminRepository;
 
     public AdminServiceImpl(AdminRepository adminRepository) {

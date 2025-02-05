@@ -16,11 +16,6 @@ import java.util.List;
 @RequestMapping("/admin")
 public class AdminController {
 
-    public static String OWNER_NAME = "SANJAY BORIYA";
-    public static String OWNER_CONTACT_NO = "9993957179,8435555882";
-    public static String OWNER_EMAIL = "radhikasolar10@gmail.com";
-    public static String OWNER_ADDRESS = "Near Radhika Hotel Dewas Naka Indore M.P.";
-
     private final AdminServiceImpl adminServiceImpl;
     private final LogoServiceImpl logoServiceImpl;
 
@@ -33,9 +28,7 @@ public class AdminController {
     public String getAdminDashboard(Model model) {
         Admin admin = adminServiceImpl.getAdminDetails(1L);
         List<Logo> logos = logoServiceImpl.getAllLogos();
-        logos.forEach(logo -> {
-            model.addAttribute("logoUrl", logo.getS3Url());
-        });
+        logos.forEach(logo -> model.addAttribute("logoUrl", logo.getLocalLogoPath()));
         model.addAttribute("ownerName", admin.getOwnerName());
         model.addAttribute("ownerContactNo", admin.getOwnerContactNo());
         model.addAttribute("ownerEmail", admin.getOwnerEmail());
