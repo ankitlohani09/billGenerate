@@ -1,29 +1,43 @@
-/* General Container Styling */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+
 body {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    height: 100vh;
     font-family: 'Roboto', sans-serif;
     background-color: #f8f9fa;
-    margin: 0;
     color: #333;
 }
 
+/* Main Container Styling */
 .container {
-    max-width: 600px;
-    margin: 0 auto;
-    padding: 20px;
-    border-radius: 8px;
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+    flex-grow: 1;
+    margin-top: 30px;
 }
 
 h2 {
-    text-align: center;
-    margin-bottom: 20px;
+    font-size: 2rem;
     color: #007bff;
+    margin-bottom: 20px;
+    text-align: center;
 }
 
 /* Buttons Styling */
 .buttons {
     display: flex;
-    justify-content: space-around;
+    justify-content: center;
+    gap: 20px;
+    width: 100%;
 }
 
 .btn {
@@ -49,4 +63,25 @@ h2 {
 
 .btn-success:hover {
     background-color: #218838;
+}
+
+/* For smaller screens */
+@media (max-width: 768px) {
+    .container {
+        width: 90%;
+    }
+
+    h2 {
+        font-size: 1.8rem;
+    }
+
+    .buttons {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .btn {
+        width: 100%;
+        margin-bottom: 10px;
+    }
 }

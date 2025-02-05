@@ -8,6 +8,8 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.List;
 
 import static com.example.controllers.HomeController.*;
 
@@ -24,6 +26,11 @@ public class QuotationController {
 
     @GetMapping("/getAll")
     public String getAllQuotation(Model model) {
+        List<Quotation> allQuotations = quotationService.getAllQuotations();
+        if (allQuotations.isEmpty()) {
+            model.addAttribute("quotations", new ArrayList<>());
+            return "no-data-found";
+        }
         model.addAttribute("quotations", quotationService.getAllQuotations());
         return "view-all-quotation";
     }

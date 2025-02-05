@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>No Data Available</title>
+    <link rel="stylesheet" href="/css/no-data.css">
+</head>
+<body>
+
+<div th:replace="~{common/header}"></div>
+
+<div class="message-box">
+    <div class="message">
+        <h1>No Data Available</h1>
+        <p>Sorry, it seems like there's no data available in the database at the moment.</p>
+        <p>Please check back later.</p>
+        <a href="/" class="back-button">Go back to the homepage</a>
+    </div>
+</div>
+
+<div th:replace="~{common/footer}"></div>
+
+</body>
+</html>

@@ -1,0 +1,70 @@
+/* Resetting some default styles for a clean layout */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    height: 100vh;
+    font-family: Arial, sans-serif;
+}
+
+.message-box {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-grow: 1;
+}
+
+.message {
+    text-align: center;
+    padding: 40px;
+    border-radius: 10px;
+    border: 1px solid #a07ed9;
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
+    margin-top: 50px;
+    width: 80%;
+}
+
+.message h1 {
+    font-size: 2.5rem;
+    color: #d9534f;
+    margin-bottom: 20px;
+}
+
+.message p {
+    font-size: 1.2rem;
+    color: #6c757d;
+    margin-bottom: 20px;
+}
+
+.message .back-button {
+    padding: 12px 25px;
+    background-color: #007bff;
+    color: #fff;
+    border-radius: 5px;
+    text-decoration: none;
+    font-size: 1rem;
+    transition: background-color 0.3s;
+}
+
+.message .back-button:hover {
+    background-color: #0056b3;
+}
+
+/* For smaller screens */
+@media (max-width: 768px) {
+    .message {
+        padding: 30px;
+    }
+    .message h1 {
+        font-size: 2rem;
+    }
+    .message p {
+        font-size: 1rem;
+    }
+}
