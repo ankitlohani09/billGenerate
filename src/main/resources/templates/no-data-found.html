@@ -8,17 +8,20 @@
 </head>
 <body>
 
+<!-- Header -->
 <div th:replace="~{common/header}"></div>
 
 <div class="message-box">
     <div class="message">
         <h1>No Data Available</h1>
+        <img src="/image/no-data.jpg" alt="No Data Available" class="no-data-image">
         <p>Sorry, it seems like there's no data available in the database at the moment.</p>
         <p>Please check back later.</p>
         <a href="/" class="back-button">Go back to the homepage</a>
     </div>
 </div>
 
+<!-- Footer -->
 <div th:replace="~{common/footer}"></div>
 
 </body>
